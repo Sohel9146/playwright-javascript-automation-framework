@@ -1,15 +1,16 @@
-# 🚀 Task-01: Valid Login Scenario | Playwright JavaScript Automation
+# 🚀 Task-03: Verify DemoQA Page Title | Playwright JavaScript Automation
 
 ## 📖 Project Overview
 
-This task automates the **Valid Login** functionality of the SauceDemo web application using **Playwright with JavaScript**.
+This task automates the **Page Title Verification** functionality of the DemoQA web application using **Playwright with JavaScript**.
 
-The objective is to verify that a registered user can successfully log in with valid credentials and is redirected to the Inventory page.
+The objective is to verify that the application loads successfully and displays the correct browser page title.
 
-This implementation follows industry-standard automation practices including:
+The implementation follows industry-standard automation practices including:
+
 - Page Object Model (POM)
-- External Test Data (JSON)
 - Reusable Page Objects
+- Constants File
 - Clean Project Structure
 - Playwright Assertions
 
@@ -19,14 +20,14 @@ This implementation follows industry-standard automation practices including:
 
 | Field | Details |
 |-------|---------|
-| **Test Case ID** | TC_LOGIN_001 |
-| **Module** | Authentication |
-| **Feature** | Login |
-| **Scenario** | Valid Login |
+| **Test Case ID** | TC_TITLE_001 |
+| **Module** | Home Page |
+| **Feature** | Page Title |
+| **Scenario** | Verify Page Title |
 | **Test Type** | Functional Testing |
 | **Execution Type** | Automated |
 | **Priority** | High |
-| **Severity** | Critical |
+| **Severity** | Medium |
 | **Automation Tool** | Playwright |
 | **Programming Language** | JavaScript |
 | **Framework Pattern** | Page Object Model (POM) |
@@ -36,7 +37,7 @@ This implementation follows industry-standard automation practices including:
 
 # 🎯 Objective
 
-To verify that a registered user can successfully log in to the SauceDemo application using valid credentials.
+To verify that the DemoQA application launches successfully and displays the correct browser page title.
 
 ---
 
@@ -44,8 +45,8 @@ To verify that a registered user can successfully log in to the SauceDemo applic
 
 | Application | Value |
 |------------|-------|
-| Application Name | SauceDemo |
-| URL | https://www.saucedemo.com |
+| Application Name | DemoQA |
+| URL | https://demoqa.com |
 | Environment | Demo |
 
 ---
@@ -69,16 +70,14 @@ To verify that a registered user can successfully log in to the SauceDemo applic
 playwright-practice-js
 │
 ├── pages
-│   └── LoginPage.js
+│   └── HomePage.js
 │
 ├── tests
-│   └── login
-│       └── validLogin.spec.js
-│
-├── testData
-│   └── loginData.json
+│   └── homepage
+│       └── verifyPageTitle.spec.js
 │
 ├── utils
+│   └── constants.js
 │
 ├── playwright.config.js
 │
@@ -94,17 +93,8 @@ playwright-practice-js
 - Node.js is installed.
 - Playwright is installed.
 - Browser dependencies are installed.
-- User has internet connectivity.
-- SauceDemo website is accessible.
-- Valid login credentials are available.
-
----
-
-# 🧪 Test Data
-
-| Username | Password |
-|----------|----------|
-| standard_user | secret_sauce |
+- Internet connection is available.
+- DemoQA application is accessible.
 
 ---
 
@@ -112,28 +102,27 @@ playwright-practice-js
 
 | Step | Action | Expected Result |
 |------|--------|----------------|
-| 1 | Launch SauceDemo application | Login page should open |
-| 2 | Enter valid username | Username should be entered successfully |
-| 3 | Enter valid password | Password should be entered successfully |
-| 4 | Click Login button | User should be authenticated |
-| 5 | Verify Inventory page | Products page should be displayed |
+| 1 | Launch DemoQA application | Home page should open |
+| 2 | Capture browser page title | Page title should be retrieved |
+| 3 | Validate page title | Title should match expected value |
 
 ---
 
 # ✅ Expected Result
 
-- Login should be successful.
-- Inventory page should be displayed.
-- URL should contain **inventory.html**.
-- Products title should be visible.
+- DemoQA home page should open successfully.
+- Browser page title should be:
+
+```text
+demosite
+```
 
 ---
 
 # 📌 Postconditions
 
-- User is logged in successfully.
-- Inventory page is displayed.
-- Application is ready for the next user actions such as Add to Cart or Checkout.
+- DemoQA home page remains open.
+- Page title is successfully verified.
 
 ---
 
@@ -142,8 +131,8 @@ playwright-practice-js
 This scenario is automated using:
 
 - Page Object Model (POM)
-- External JSON Test Data
 - Reusable Methods
+- Constants File
 - Playwright Built-in Assertions
 - Async/Await Programming
 
@@ -152,19 +141,17 @@ This scenario is automated using:
 # 🎯 Playwright Concepts Used
 
 - Page Object Model
-- Locators
+- Browser Navigation
 - Assertions
+- Constants File
+- Page Title Validation
 - Async / Await
-- JSON Test Data
-- Browser Context
-- Playwright Test Runner
 
 ---
 
 # ✔ Assertions Used
 
-- Verify URL
-- Verify Products Page Title
+- Verify browser page title using `expect().toHaveTitle()`
 
 ---
 
@@ -176,16 +163,16 @@ Run all tests
 npx playwright test
 ```
 
-Run only Task-01
+Run only Task-03
 
 ```bash
-npx playwright test tests/login/validLogin.spec.js --headed
+npx playwright test tests/homepage/verifyPageTitle.spec.js --headed
 ```
 
 Run on Chromium
 
 ```bash
-npx playwright test tests/login/validLogin.spec.js --project=chromium
+npx playwright test tests/homepage/verifyPageTitle.spec.js --project=chromium
 ```
 
 Generate HTML Report
@@ -208,87 +195,78 @@ npx playwright show-report
 
 | Execution Date | Browser | Result |
 |---------------|----------|--------|
-| DD-MM-YYYY | Chromium | ✅ Passed |
+| 03-06-2026 | Chromium | ✅ Passed |
 
 ---
 
-# 📷 Execution Evidence
+# 📷 Test Execution Evidence
 
-## Login Page
+## DemoQA Home Page
 
-> Screenshot Path
-
-```text
-docs/task-01/login-page.png
-```
-
----
-
-## Successful Login
-
-> Screenshot Path
-
-```text
-docs/task-01/inventory-page.png
-```
-
+![Home Page](docs/task-03/home-page.png)
 ---
 
 # 📈 Playwright HTML Report
 
-> Report Screenshot
-
-```text
-docs/task-01/playwright-report.png
-```
-
+![playwright report](docs/task-03/playwright-report.png)
 ---
 
 # 🌿 Git Branch Information
 
 | Branch |
 |---------|
-| feature/task-01-valid-login |
+| feature/task-03-verify-page-title |
 
 Commit Message
 
 ```text
-Task-01: Implement valid login scenario using Playwright JavaScript
+Task-03: Verify DemoQA page title using Playwright JavaScript
 ```
 
 ---
 
 # ⚠ Challenges Faced
 
-- Understanding Playwright project structure.
-- Implementing the Page Object Model.
-- Managing external JSON test data.
-- Learning Playwright assertions.
+- Creating a reusable Page Object for DemoQA.
+- Managing application URLs using a constants file.
+- Validating browser page title using Playwright assertions.
+- Maintaining a clean and scalable project structure.
 
 ---
 
 # 📚 Learning Outcome
 
-- Learned Playwright project setup.
-- Implemented Page Object Model.
-- Used reusable page methods.
-- Performed UI validations using assertions.
-- Executed Playwright tests from terminal.
-- Generated Playwright HTML reports.
-- Managed code using Git feature branches.
+- Implemented Page Title verification.
+- Improved Page Object Model implementation.
+- Used reusable constants for URL management.
+- Practiced Playwright title assertions.
+- Enhanced framework organization.
 
 ---
 
 # 🚀 Future Enhancements
 
-- Data Driven Testing
-- Environment Configuration
 - Cross Browser Execution
-- Parallel Test Execution
+- Data-Driven Testing
+- Retry Mechanism
+- Parallel Execution
+- Screenshot on Failure
 - Allure Reporting
-- CI/CD using GitHub Actions
+- GitHub Actions CI/CD
 - Docker Integration
-- API Testing using Playwright
+
+---
+
+# 💡 Best Practices Followed
+
+- ✔ Page Object Model (POM)
+- ✔ Reusable Methods
+- ✔ Constants File
+- ✔ Clean Folder Structure
+- ✔ Meaningful Naming Convention
+- ✔ Version Control using Git
+- ✔ Feature Branch Workflow
+- ✔ Readable Test Cases
 
 ---
 
@@ -298,10 +276,12 @@ Task-01: Implement valid login scenario using Playwright JavaScript
 
 QA Automation Engineer
 
-GitHub Profile:
+### GitHub Profile
+
 https://github.com/Sohel9147
 
-Repository:
+### Repository
+
 https://github.com/Sohel9147/playwright-javascript-automation-framework
 
 ---
