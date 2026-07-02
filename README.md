@@ -219,7 +219,7 @@ npx playwright show-report
 > Screenshot Path
 
 ```text
-docs/task-01/login-page.png
+![Login Page](docs/task-01/login-page.png)
 ```
 
 ---
