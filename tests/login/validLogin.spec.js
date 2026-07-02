@@ -8,7 +8,7 @@ const loginData = require('../../testData/loginData.json');
 test.describe("Saus Demo Login", () => 
 {
 
-    test("Verify user can login with valid credentials", async ({page}) => 
+    test.only("Verify user can login with valid credentials", async ({page}) => 
         {
 
             const loginPage = new LoginPage(page)
