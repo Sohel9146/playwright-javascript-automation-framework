@@ -208,15 +208,13 @@ npx playwright show-report
 
 | Execution Date | Browser | Result |
 |---------------|----------|--------|
-| DD-MM-YYYY | Chromium | ✅ Passed |
+| 02-06-2026 | Chromium | ✅ Passed |
 
 ---
 
 # 📷 Execution Evidence
 
 ## Login Page
-
-> Screenshot Path
 
 ![Login Page](docs/task-01/login-page.png)
 
@@ -225,15 +223,11 @@ npx playwright show-report
 
 ## Successful Login
 
-> Screenshot Path
-
 ![Successful Login](docs/task-01/inventory-page.png)
 
 ---
 
 # 📈 Playwright HTML Report
-
-> Report Screenshot
 
 ![Playwright Report](docs/task-01/playwright-report.png)
 
@@ -289,7 +283,7 @@ Task-01: Implement valid login scenario using Playwright JavaScript
 
 # 👨‍💻 Author
 
-**Sohel Shaikh**
+**Suhel Shaikh**
 
 QA Automation Engineer
 
