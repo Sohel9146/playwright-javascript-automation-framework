@@ -218,9 +218,8 @@ npx playwright show-report
 
 > Screenshot Path
 
-```text
 ![Login Page](docs/task-01/login-page.png)
-```
+
 
 ---
 
@@ -228,9 +227,7 @@ npx playwright show-report
 
 > Screenshot Path
 
-```text
-docs/task-01/inventory-page.png
-```
+![Successful Login](docs/task-01/inventory-page.png)
 
 ---
 
@@ -238,9 +235,7 @@ docs/task-01/inventory-page.png
 
 > Report Screenshot
 
-```text
-docs/task-01/playwright-report.png
-```
+![Playwright Report](docs/task-01/playwright-report.png)
 
 ---
 
