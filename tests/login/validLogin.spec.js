@@ -1,7 +1,8 @@
 
 import {test, expect} from '@playwright/test'
 import {LoginPage} from '../../pages/LoginPage.js'
-const loginData = require('../../testData/loginData.json');
+const loginData = require('../../testData/loginData.json'); 
+// const { BASE_URL } = require('../../utils/constants.js')
 
 
 test.describe("Saus Demo Login", () => 
