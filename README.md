@@ -6,4 +6,5 @@
 |------|--------|---------------|
 | ✅ Task-01 | Completed | [View](docs/task-01/README.md) |
 | ✅ Task-02 | Completed | [View](docs/task-02/README.md) |
-| ⏳ Task-03 | In Progress | Coming Soon |
+| ✅ Task-03 | Completed | [View](docs/task-03/README.md) |
+| ⏳ Task-04 | In Progress | Coming Soon |
