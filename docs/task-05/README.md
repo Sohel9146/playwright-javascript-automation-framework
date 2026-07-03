@@ -1,10 +1,10 @@
-# 🚀 Task-04: Verify Checkbox Selection | Playwright JavaScript Automation
+# 🚀 Task-05: Verify Radio Button Selection | Playwright JavaScript Automation
 
 ## 📖 Project Overview
 
-This task automates the **Checkbox Selection** functionality of the DemoQA web application using **Playwright with JavaScript**.
+This task automates the **Radio Button Selection** functionality of the DemoQA web application using **Playwright with JavaScript**.
 
-The objective is to verify that a user can successfully select the **Home** checkbox and validate the selection using Playwright assertions.
+The objective is to verify that a user can successfully select the **Yes** radio button and validate the displayed success message.
 
 The implementation follows industry-standard automation practices including:
 
@@ -20,10 +20,10 @@ The implementation follows industry-standard automation practices including:
 
 | Field | Details |
 |-------|---------|
-| **Test Case ID** | TC_CHECKBOX_001 |
+| **Test Case ID** | TC_RADIO_001 |
 | **Module** | Elements |
-| **Feature** | Checkbox |
-| **Scenario** | Verify Checkbox Selection |
+| **Feature** | Radio Button |
+| **Scenario** | Verify Radio Button Selection |
 | **Test Type** | Functional Testing |
 | **Execution Type** | Automated |
 | **Priority** | High |
@@ -37,7 +37,7 @@ The implementation follows industry-standard automation practices including:
 
 # 🎯 Objective
 
-Verify that the **Home** checkbox can be selected successfully and the application displays the correct selected result.
+Verify that the **Yes** radio button can be selected successfully and the application displays the correct confirmation message.
 
 ---
 
@@ -46,7 +46,7 @@ Verify that the **Home** checkbox can be selected successfully and the applicati
 | Application | Value |
 |------------|-------|
 | Application Name | DemoQA |
-| URL | https://demoqa.com/checkbox |
+| URL | https://demoqa.com/radio-button |
 | Environment | Demo |
 
 ---
@@ -70,11 +70,11 @@ Verify that the **Home** checkbox can be selected successfully and the applicati
 playwright-practice-js
 │
 ├── pages
-│   └── CheckBoxPage.js
+│   └── RadioButtonPage.js
 │
 ├── tests
-│   └── checkbox
-│       └── verifyCheckboxSelection.spec.js
+│   └── radioButton
+│       └── verifyRadioButtonSelection.spec.js
 │
 ├── utils
 │   └── constants.js
@@ -102,29 +102,28 @@ playwright-practice-js
 
 | Step | Action | Expected Result |
 |------|--------|----------------|
-| 1 | Launch DemoQA Checkbox page | Checkbox page should open |
-| 2 | Click **Expand All** | Checkbox tree should expand |
-| 3 | Select **Home** checkbox | Checkbox should be selected |
-| 4 | Validate success message | Selected item should display as **home** |
+| 1 | Launch DemoQA Radio Button page | Radio Button page should open |
+| 2 | Select **Yes** radio button | Radio button should be selected |
+| 3 | Validate confirmation message | Success message should display **Yes** |
 
 ---
 
 # ✅ Expected Result
 
-- Checkbox tree expands successfully.
-- Home checkbox is selected.
-- Success message displays:
+- DemoQA Radio Button page loads successfully.
+- **Yes** radio button is selected.
+- Confirmation message displays:
 
 ```text
-home
+Yes
 ```
 
 ---
 
 # 📌 Postconditions
 
-- Home checkbox remains selected.
-- Success message is displayed correctly.
+- Yes radio button remains selected.
+- Confirmation message is displayed successfully.
 
 ---
 
@@ -142,7 +141,7 @@ This scenario is automated using:
 
 # 🎯 Playwright Concepts Used
 
-- Page Object Model
+- Page Object Model (POM)
 - Browser Navigation
 - Playwright Locators
 - Click Actions
@@ -154,7 +153,7 @@ This scenario is automated using:
 
 # ✔ Assertions Used
 
-- Verify selected checkbox result using `expect().toContainText()`
+- Verify confirmation message using `expect().toContainText()`
 
 ---
 
@@ -166,10 +165,10 @@ Run all tests
 npx playwright test
 ```
 
-Run only Task-04
+Run only Task-05
 
 ```bash
-npx playwright test tests/checkbox/verifyCheckboxSelection.spec.js --headed
+npx playwright test tests/radioButton/verifyRadioButtonSelection.spec.js --headed
 ```
 
 Generate HTML Report
@@ -198,28 +197,21 @@ npx playwright show-report
 
 # 📷 Test Execution Evidence
 
-## Checkbox Page
+## Radio Button Page
 
-<p align="center">
-<img src="checkbox-page.png" width="900">
-</p>
+![Checkbox Page](docs/task-05/checkbox-page.png)
 
 ---
 
-## Selected Checkbox
+## Radio Button Selected
 
-<p align="center">
-<img src="checkbox-selected.png" width="900">
-</p>
+![Radio Button Selected](docs/task-05/checkbox-selected.png)
 
 ---
 
 # 📈 Playwright HTML Report
 
-<p align="center">
-<img src="playwright-report.png" width="900">
-</p>
-
+![Playwright Report](docs/task-05/playwright-report.png)
 
 ---
 
@@ -227,39 +219,39 @@ npx playwright show-report
 
 | Branch |
 |---------|
-| feature/task-04-verify-checkbox-selection |
+| feature/task-05-verify-radio-button-selection |
 
 Commit Message
 
 ```text
-Task-04: Verify Checkbox Selection using Playwright JavaScript
+Task-05: Verify Radio Button Selection using Playwright JavaScript
 ```
 
 ---
 
 # ⚠ Challenges Faced
 
-- Identifying stable locators for checkbox elements.
-- Expanding the checkbox tree before selection.
-- Validating selected checkbox result.
-- Maintaining reusable Page Object methods.
+- Identifying reliable locators for radio button elements.
+- Validating the confirmation message after radio button selection.
+- Implementing reusable page methods using the Page Object Model.
+- Maintaining a clean and scalable project structure.
 
 ---
 
 # 📚 Learning Outcome
 
-- Implemented checkbox automation using Playwright.
+- Implemented radio button automation using Playwright.
 - Improved understanding of Playwright locators.
 - Strengthened Page Object Model implementation.
 - Practiced Playwright assertions.
-- Enhanced reusable framework design.
+- Enhanced framework organization following automation best practices.
 
 ---
 
 # 🚀 Future Enhancements
 
-- Data-Driven Testing
 - Cross Browser Execution
+- Data-Driven Testing
 - Parallel Execution
 - Retry Mechanism
 - Screenshot on Failure
