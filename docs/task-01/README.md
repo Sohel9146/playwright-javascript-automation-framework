@@ -216,20 +216,18 @@ npx playwright show-report
 
 ## Login Page
 
-![Login Page](docs/task-01/login-page.png)
-
-
+![Login Page](login-page.png)
 ---
 
 ## Successful Login
 
-![Successful Login](docs/task-01/inventory-page.png)
+![Successful Login](inventory-page.png)
 
 ---
 
 # 📈 Playwright HTML Report
 
-![Playwright Report](docs/task-01/playwright-report.png)
+![Playwright Report](playwright-report.png)
 
 ---
 
