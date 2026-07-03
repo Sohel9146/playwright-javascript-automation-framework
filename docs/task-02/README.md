@@ -224,26 +224,17 @@ npx playwright show-report
 
 ## Invalid Login Page
 
-<p align="center">
-<img src="docs/task-02/invalid-login.png" width="900">
-</p>
-
+![Invalid Login](invalid-login.png)
 ---
 
 ## Error Message Validation
 
-<p align="center">
-<img src="docs/task-02/error-message.png" width="900">
-</p>
-
+![Error Message](error-message.png)
 ---
 
 # 📈 Playwright HTML Report
 
-<p align="center">
-<img src="docs/task-02/playwright-report.png" width="900">
-</p>
-
+![Playwright HTML Report](playwright-report.png)
 ---
 
 # 🌿 Git Branch Information
