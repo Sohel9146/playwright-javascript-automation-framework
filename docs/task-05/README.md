@@ -199,19 +199,19 @@ npx playwright show-report
 
 ## Radio Button Page
 
-![Checkbox Page](docs/task-05/checkbox-page.png)
+![Radio Button Page](radio-button-page.png)
 
 ---
 
 ## Radio Button Selected
 
-![Radio Button Selected](docs/task-05/checkbox-selected.png)
+![Radio Button Selected](radio-selected.png)
 
 ---
 
 # 📈 Playwright HTML Report
 
-![Playwright Report](docs/task-05/playwright-report.png)
+![Playwright Report](playwright-report.png)
 
 ---
 
