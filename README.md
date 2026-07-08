@@ -1,15 +1,17 @@
-# 🚀 Task-01: Valid Login Scenario | Playwright JavaScript Automation
+# 🚀 Task-06: Verify Text Box Submission | Playwright JavaScript Automation
 
 ## 📖 Project Overview
 
-This task automates the **Valid Login** functionality of the SauceDemo web application using **Playwright with JavaScript**.
+This task automates the **Text Box Submission** functionality of the DemoQA web application using **Playwright with JavaScript**.
 
-The objective is to verify that a registered user can successfully log in with valid credentials and is redirected to the Inventory page.
+The objective is to verify that a user can successfully enter data into all text fields, submit the form, and validate that the submitted information is displayed correctly.
 
-This implementation follows industry-standard automation practices including:
+The implementation follows industry-standard automation practices including:
+
 - Page Object Model (POM)
-- External Test Data (JSON)
 - Reusable Page Objects
+- JSON Test Data
+- Constants File
 - Clean Project Structure
 - Playwright Assertions
 
@@ -19,14 +21,14 @@ This implementation follows industry-standard automation practices including:
 
 | Field | Details |
 |-------|---------|
-| **Test Case ID** | TC_LOGIN_001 |
-| **Module** | Authentication |
-| **Feature** | Login |
-| **Scenario** | Valid Login |
+| **Test Case ID** | TC_TEXTBOX_001 |
+| **Module** | Elements |
+| **Feature** | Text Box |
+| **Scenario** | Verify Text Box Submission |
 | **Test Type** | Functional Testing |
 | **Execution Type** | Automated |
 | **Priority** | High |
-| **Severity** | Critical |
+| **Severity** | Medium |
 | **Automation Tool** | Playwright |
 | **Programming Language** | JavaScript |
 | **Framework Pattern** | Page Object Model (POM) |
@@ -36,7 +38,7 @@ This implementation follows industry-standard automation practices including:
 
 # 🎯 Objective
 
-To verify that a registered user can successfully log in to the SauceDemo application using valid credentials.
+Verify that the DemoQA Text Box form accepts valid user information and correctly displays the submitted details after clicking the **Submit** button.
 
 ---
 
@@ -44,8 +46,8 @@ To verify that a registered user can successfully log in to the SauceDemo applic
 
 | Application | Value |
 |------------|-------|
-| Application Name | SauceDemo |
-| URL | https://www.saucedemo.com |
+| Application Name | DemoQA |
+| URL | https://demoqa.com/text-box |
 | Environment | Demo |
 
 ---
@@ -69,16 +71,17 @@ To verify that a registered user can successfully log in to the SauceDemo applic
 playwright-practice-js
 │
 ├── pages
-│   └── LoginPage.js
+│   └── TextBoxPage.js
 │
 ├── tests
-│   └── login
-│       └── validLogin.spec.js
+│   └── textBox
+│       └── verifyTextBoxSubmission.spec.js
 │
 ├── testData
-│   └── loginData.json
+│   └── textBoxData.json
 │
 ├── utils
+│   └── constants.js
 │
 ├── playwright.config.js
 │
@@ -89,22 +92,24 @@ playwright-practice-js
 
 ---
 
-# 📌 Preconditions
+# 📌 Test Data
 
-- Node.js is installed.
-- Playwright is installed.
-- Browser dependencies are installed.
-- User has internet connectivity.
-- SauceDemo website is accessible.
-- Valid login credentials are available.
+| Field | Value |
+|------|-------|
+| Full Name | Sohel Shaikh |
+| Email | sohelshaikh@gmail.com |
+| Current Address | Pune, Maharashtra |
+| Permanent Address | Mumbai, Maharashtra |
 
 ---
 
-# 🧪 Test Data
+# 📌 Preconditions
 
-| Username | Password |
-|----------|----------|
-| standard_user | secret_sauce |
+- Node.js is installed.
+- Playwright framework is installed.
+- Browser dependencies are installed.
+- Internet connection is available.
+- DemoQA application is accessible.
 
 ---
 
@@ -112,28 +117,27 @@ playwright-practice-js
 
 | Step | Action | Expected Result |
 |------|--------|----------------|
-| 1 | Launch SauceDemo application | Login page should open |
-| 2 | Enter valid username | Username should be entered successfully |
-| 3 | Enter valid password | Password should be entered successfully |
-| 4 | Click Login button | User should be authenticated |
-| 5 | Verify Inventory page | Products page should be displayed |
+| 1 | Launch DemoQA Text Box page | Page should open successfully |
+| 2 | Enter Full Name | Value should be accepted |
+| 3 | Enter Email | Value should be accepted |
+| 4 | Enter Current Address | Value should be accepted |
+| 5 | Enter Permanent Address | Value should be accepted |
+| 6 | Click Submit | Form should be submitted |
+| 7 | Validate submitted information | Entered values should be displayed |
 
 ---
 
 # ✅ Expected Result
 
-- Login should be successful.
-- Inventory page should be displayed.
-- URL should contain **inventory.html**.
-- Products title should be visible.
+- Text Box form should be submitted successfully.
+- Submitted values should exactly match the entered values.
 
 ---
 
 # 📌 Postconditions
 
-- User is logged in successfully.
-- Inventory page is displayed.
-- Application is ready for the next user actions such as Add to Cart or Checkout.
+- Submitted information is displayed successfully.
+- All entered values are validated.
 
 ---
 
@@ -142,8 +146,9 @@ playwright-practice-js
 This scenario is automated using:
 
 - Page Object Model (POM)
-- External JSON Test Data
+- JSON Test Data
 - Reusable Methods
+- Constants File
 - Playwright Built-in Assertions
 - Async/Await Programming
 
@@ -151,20 +156,25 @@ This scenario is automated using:
 
 # 🎯 Playwright Concepts Used
 
-- Page Object Model
-- Locators
+- Page Object Model (POM)
+- Playwright Locators
+- Fill()
+- Click()
 - Assertions
+- JSON Data Handling
+- Browser Navigation
 - Async / Await
-- JSON Test Data
-- Browser Context
-- Playwright Test Runner
 
 ---
 
 # ✔ Assertions Used
 
-- Verify URL
-- Verify Products Page Title
+- Verify Full Name
+- Verify Email
+- Verify Current Address
+- Verify Permanent Address
+
+using Playwright `expect().toContainText()`
 
 ---
 
@@ -176,16 +186,10 @@ Run all tests
 npx playwright test
 ```
 
-Run only Task-01
+Run only Task-06
 
 ```bash
-npx playwright test tests/login/validLogin.spec.js --headed
-```
-
-Run on Chromium
-
-```bash
-npx playwright test tests/login/validLogin.spec.js --project=chromium
+npx playwright test tests/textBox/verifyTextBoxSubmission.spec.js --headed
 ```
 
 Generate HTML Report
@@ -208,39 +212,27 @@ npx playwright show-report
 
 | Execution Date | Browser | Result |
 |---------------|----------|--------|
-| DD-MM-YYYY | Chromium | ✅ Passed |
+| 09-07-2026 | Chromium | ✅ Passed |
 
 ---
 
-# 📷 Execution Evidence
+# 📷 Test Execution Evidence
 
-## Login Page
+## DemoQA Text Box Page
 
-> Screenshot Path
-
-```text
-docs/task-01/login-page.png
-```
+![Text Box Page](docs/task-06/text-box-page.jpeg)
 
 ---
 
-## Successful Login
+## Submitted Form Details
 
-> Screenshot Path
-
-```text
-docs/task-01/inventory-page.png
-```
+![Submitted Data](docs/task-06/submitted-data.png)
 
 ---
 
 # 📈 Playwright HTML Report
 
-> Report Screenshot
-
-```text
-docs/task-01/playwright-report.png
-```
+![Playwright Report](docs/task-06/playwright-report.png)
 
 ---
 
@@ -248,47 +240,58 @@ docs/task-01/playwright-report.png
 
 | Branch |
 |---------|
-| feature/task-01-valid-login |
+| feature/task-06-verify-text-box-submission |
 
 Commit Message
 
 ```text
-Task-01: Implement valid login scenario using Playwright JavaScript
+Task-06: Verify Text Box Submission using Playwright JavaScript
 ```
 
 ---
 
 # ⚠ Challenges Faced
 
-- Understanding Playwright project structure.
-- Implementing the Page Object Model.
-- Managing external JSON test data.
-- Learning Playwright assertions.
+- Handling multiple text input fields.
+- Scrolling to the Submit button before clicking.
+- Managing reusable test data using JSON.
+- Validating multiple output values after form submission.
 
 ---
 
 # 📚 Learning Outcome
 
-- Learned Playwright project setup.
-- Implemented Page Object Model.
-- Used reusable page methods.
-- Performed UI validations using assertions.
-- Executed Playwright tests from terminal.
-- Generated Playwright HTML reports.
-- Managed code using Git feature branches.
+- Implemented Text Box automation using Playwright.
+- Practiced JSON-driven test data.
+- Improved Page Object Model implementation.
+- Strengthened Playwright assertions.
+- Enhanced reusable framework design.
 
 ---
 
 # 🚀 Future Enhancements
 
-- Data Driven Testing
-- Environment Configuration
+- Data-Driven Testing with Excel
 - Cross Browser Execution
-- Parallel Test Execution
+- Parallel Execution
+- Retry Mechanism
+- Screenshot on Failure
 - Allure Reporting
-- CI/CD using GitHub Actions
-- Docker Integration
-- API Testing using Playwright
+- GitHub Actions CI/CD
+- Jenkins Integration
+
+---
+
+# 💡 Best Practices Followed
+
+- ✔ Page Object Model (POM)
+- ✔ JSON Test Data
+- ✔ Reusable Methods
+- ✔ Constants File
+- ✔ Clean Folder Structure
+- ✔ Meaningful Naming Convention
+- ✔ Git Feature Branch Workflow
+- ✔ Professional Documentation
 
 ---
 
@@ -298,10 +301,12 @@ Task-01: Implement valid login scenario using Playwright JavaScript
 
 QA Automation Engineer
 
-GitHub Profile:
+### GitHub Profile
+
 https://github.com/Sohel9147
 
-Repository:
+### Repository
+
 https://github.com/Sohel9147/playwright-javascript-automation-framework
 
 ---
