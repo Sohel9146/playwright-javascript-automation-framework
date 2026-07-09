@@ -60,4 +60,24 @@ export class BasePage
         {
             return this.page.locator(locator);
         }
+
+        // Double Click
+        async doubleClick(locator)
+        {
+            await this.page.locator(locator).dblclick()
+        }
+
+        // Right Click
+        async rightClick(locator)
+        {
+            await this.page.locator(locator).click( {button:"right"} )
+        }
+
+        // Normal Click
+        async normalClick(locator)
+        {
+            await this.page.locator(locator).click()
+        }
+
+
 }

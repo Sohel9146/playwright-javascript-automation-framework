@@ -1,0 +1,5 @@
+{
+    "expectedDbClickMessage"        :   "You have done a double click",
+    "expectedRightClickMessgae"     :   "You have done a right click",
+    "expectedClickMessage"          :   "You have done a dynamic click"
+}
