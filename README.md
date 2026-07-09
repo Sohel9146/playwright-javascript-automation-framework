@@ -1,17 +1,22 @@
-# 🚀 Task-01: Valid Login Scenario | Playwright JavaScript Automation
+# 🚀 Task-08: Verify Button Click | Playwright JavaScript Automation
 
 ## 📖 Project Overview
 
-This task automates the **Valid Login** functionality of the SauceDemo web application using **Playwright with JavaScript**.
+This task automates the **Buttons** functionality available on the **DemoQA** website using **Playwright with JavaScript**.
 
-The objective is to verify that a registered user can successfully log in with valid credentials and is redirected to the Inventory page.
+The objective is to verify different button actions, with primary focus on the **Double Click** operation and validating the success message displayed after the action.
 
-This implementation follows industry-standard automation practices including:
+This task further enhances the automation framework by utilizing the reusable **BasePage** methods introduced in the previous task.
+
+The framework follows industry-standard automation practices including:
+
 - Page Object Model (POM)
-- External Test Data (JSON)
-- Reusable Page Objects
-- Clean Project Structure
+- Base Page Architecture
+- Reusable Methods
+- JSON Test Data
+- Constants File
 - Playwright Assertions
+- ES Modules (Import / Export)
 
 ---
 
@@ -19,24 +24,24 @@ This implementation follows industry-standard automation practices including:
 
 | Field | Details |
 |-------|---------|
-| **Test Case ID** | TC_LOGIN_001 |
-| **Module** | Authentication |
-| **Feature** | Login |
-| **Scenario** | Valid Login |
+| **Test Case ID** | TC_BUTTON_001 |
+| **Module** | Buttons |
+| **Feature** | Double Click Button |
+| **Scenario** | Verify Double Click Functionality |
 | **Test Type** | Functional Testing |
 | **Execution Type** | Automated |
 | **Priority** | High |
-| **Severity** | Critical |
+| **Severity** | Medium |
 | **Automation Tool** | Playwright |
 | **Programming Language** | JavaScript |
-| **Framework Pattern** | Page Object Model (POM) |
+| **Framework Pattern** | Page Object Model (POM) + Base Page |
 | **Execution Status** | ✅ Passed |
 
 ---
 
 # 🎯 Objective
 
-To verify that a registered user can successfully log in to the SauceDemo application using valid credentials.
+Verify that the Double Click button performs the expected action and displays the correct success message.
 
 ---
 
@@ -44,8 +49,9 @@ To verify that a registered user can successfully log in to the SauceDemo applic
 
 | Application | Value |
 |------------|-------|
-| Application Name | SauceDemo |
-| URL | https://www.saucedemo.com |
+| Application Name | DemoQA |
+| Module | Buttons |
+| URL | https://demoqa.com/buttons |
 | Environment | Demo |
 
 ---
@@ -54,12 +60,28 @@ To verify that a registered user can successfully log in to the SauceDemo applic
 
 | Technology | Version |
 |------------|----------|
-| Node.js | Latest |
-| Playwright | Latest |
+| Node.js | v22.11.0 |
+| Playwright | v1.61.1 |
 | JavaScript | ES6 |
 | VS Code | IDE |
 | Git | Version Control |
 | GitHub | Repository Hosting |
+
+---
+
+# 🏗 Framework Evolution
+
+## Framework Version
+
+**Version 2.1**
+
+### New Enhancements Introduced
+
+- Added reusable `doubleClick()` method in BasePage.
+- Added reusable `rightClick()` method.
+- Added reusable button interaction methods.
+- Continued implementation using ES Modules.
+- Improved Page Object readability.
 
 ---
 
@@ -68,43 +90,49 @@ To verify that a registered user can successfully log in to the SauceDemo applic
 ```text
 playwright-practice-js
 │
-├── pages
-│   └── LoginPage.js
+├── docs
+│   └── task-08
+│       ├── README.md
+│       └── screenshots
 │
-├── tests
-│   └── login
-│       └── validLogin.spec.js
+├── pages
+│   ├── BasePage.js
+│   └── ButtonsPage.js
 │
 ├── testData
-│   └── loginData.json
+│   └── buttonsData.json
+│
+├── tests
+│   └── buttons
+│       └── verifyDoubleClick.spec.js
 │
 ├── utils
+│   └── constants.js
 │
 ├── playwright.config.js
 │
-├── package.json
-│
-└── README.md
+└── package.json
+```
+
+---
+
+# 📌 Test Data
+
+```json
+{
+    "expectedDbClickMessage": "You have done a double click"
+}
 ```
 
 ---
 
 # 📌 Preconditions
 
-- Node.js is installed.
-- Playwright is installed.
-- Browser dependencies are installed.
-- User has internet connectivity.
-- SauceDemo website is accessible.
-- Valid login credentials are available.
-
----
-
-# 🧪 Test Data
-
-| Username | Password |
-|----------|----------|
-| standard_user | secret_sauce |
+- Node.js installed.
+- Playwright installed.
+- Browser dependencies installed.
+- DemoQA website accessible.
+- Framework configured successfully.
 
 ---
 
@@ -112,80 +140,83 @@ playwright-practice-js
 
 | Step | Action | Expected Result |
 |------|--------|----------------|
-| 1 | Launch SauceDemo application | Login page should open |
-| 2 | Enter valid username | Username should be entered successfully |
-| 3 | Enter valid password | Password should be entered successfully |
-| 4 | Click Login button | User should be authenticated |
-| 5 | Verify Inventory page | Products page should be displayed |
+| 1 | Launch Browser | Browser opens successfully |
+| 2 | Navigate to DemoQA Buttons page | Buttons page loads |
+| 3 | Double Click button | Action performed successfully |
+| 4 | Validate success message | Correct message displayed |
 
 ---
 
 # ✅ Expected Result
 
-- Login should be successful.
-- Inventory page should be displayed.
-- URL should contain **inventory.html**.
-- Products title should be visible.
+The success message should display:
+
+```
+You have done a double click
+```
 
 ---
 
 # 📌 Postconditions
 
-- User is logged in successfully.
-- Inventory page is displayed.
-- Application is ready for the next user actions such as Add to Cart or Checkout.
+- Button action completed successfully.
+- Validation passed.
+- Browser closed.
 
 ---
 
 # ⚙ Automation Approach
 
-This scenario is automated using:
-
 - Page Object Model (POM)
-- External JSON Test Data
+- Base Page Architecture
+- JSON Test Data
 - Reusable Methods
-- Playwright Built-in Assertions
-- Async/Await Programming
+- Playwright Assertions
 
 ---
 
 # 🎯 Playwright Concepts Used
 
 - Page Object Model
-- Locators
+- BasePage
+- Inheritance
+- Double Click
 - Assertions
-- Async / Await
-- JSON Test Data
-- Browser Context
-- Playwright Test Runner
+- JSON Data
+- ES Modules
+
+---
+
+# 🔄 Reusable Methods Used
+
+| Method | Purpose |
+|---------|---------|
+| navigate() | Navigate to URL |
+| doubleClick() | Double click an element |
+| getLocator() | Return Playwright locator |
 
 ---
 
 # ✔ Assertions Used
 
-- Verify URL
-- Verify Products Page Title
+```javascript
+await expect(locator).toContainText(expectedMessage);
+```
 
 ---
 
-# ▶️ Test Execution
+# ▶ Test Execution
 
-Run all tests
+Run complete suite
 
 ```bash
 npx playwright test
 ```
 
-Run only Task-01
+Run Task-08
 
 ```bash
-npx playwright test tests/login/validLogin.spec.js --headed
-```
-
-Run on Chromium
-
-```bash
-npx playwright test tests/login/validLogin.spec.js --project=chromium
+npx playwright test tests/buttons/verifyDoubleClick.spec.js --headed
 ```
 
 Generate HTML Report
@@ -198,97 +229,112 @@ npx playwright show-report
 
 # 🌍 Browser Support
 
-- ✅ Chromium
-- ✅ Firefox
-- ✅ WebKit
+- Chromium
+- Firefox
+- WebKit
 
 ---
 
 # 📊 Test Execution Status
 
-| Execution Date | Browser | Result |
-|---------------|----------|--------|
-| DD-MM-YYYY | Chromium | ✅ Passed |
+| Browser | Result |
+|----------|--------|
+| Chromium | ✅ Passed |
 
 ---
 
-# 📷 Execution Evidence
+# 📷 Test Execution Evidence
 
-## Login Page
+## Application Loaded
 
-> Screenshot Path
-
-```text
-docs/task-01/login-page.png
 ```
-
----
-
-## Successful Login
-
-> Screenshot Path
-
-```text
-docs/task-01/inventory-page.png
 ```
+![Appliocation Loaded](docs/task-08/01-buttons-page.png)
 
 ---
 
-# 📈 Playwright HTML Report
+## Double Click Successful
 
-> Report Screenshot
-
-```text
-docs/task-01/playwright-report.png
 ```
+```
+![Appliocation Loaded](docs/task-08/02-double-click-success.png)
+
 
 ---
 
-# 🌿 Git Branch Information
+## Playwright HTML Report
 
-| Branch |
-|---------|
-| feature/task-01-valid-login |
+```
+```
+![Appliocation Loaded](docs/task-08/03-playwright-report.png)
 
-Commit Message
+---
 
-```text
-Task-01: Implement valid login scenario using Playwright JavaScript
+# 🌿 Git Branch
+
+```
+feature/task-08-button-double-click
 ```
 
 ---
 
 # ⚠ Challenges Faced
 
-- Understanding Playwright project structure.
-- Implementing the Page Object Model.
-- Managing external JSON test data.
-- Learning Playwright assertions.
+- Creating reusable BasePage methods.
+- Understanding Playwright mouse actions.
+- Validating dynamic success messages.
+
+---
+
+# ✅ Solution Implemented
+
+- Implemented reusable `doubleClick()` method.
+- Used Playwright assertions.
+- Followed Page Object Model.
+- Externalized test data into JSON.
 
 ---
 
 # 📚 Learning Outcome
 
-- Learned Playwright project setup.
-- Implemented Page Object Model.
-- Used reusable page methods.
-- Performed UI validations using assertions.
-- Executed Playwright tests from terminal.
-- Generated Playwright HTML reports.
-- Managed code using Git feature branches.
+- Learned Double Click handling.
+- Improved BasePage.
+- Better understanding of reusable framework components.
+- Continued using ES Modules.
+
+---
+
+# 💡 Best Practices Followed
+
+- Page Object Model
+- Base Page
+- JSON Test Data
+- Clean Code
+- Feature Branch Workflow
+- Professional Folder Structure
+
+---
+
+# 📈 Framework Metrics
+
+| Metric | Value |
+|---------|------|
+| Test Cases | 1 |
+| Page Objects | 1 |
+| BasePage Methods Used | 3 |
+| Assertions | 1 |
+| JSON Files | 1 |
 
 ---
 
 # 🚀 Future Enhancements
 
-- Data Driven Testing
-- Environment Configuration
-- Cross Browser Execution
-- Parallel Test Execution
-- Allure Reporting
-- CI/CD using GitHub Actions
-- Docker Integration
-- API Testing using Playwright
+- Right Click Validation
+- Dynamic Click Validation
+- Parallel Execution
+- Screenshot on Failure
+- Allure Report
+- GitHub Actions
 
 ---
 
@@ -298,14 +344,8 @@ Task-01: Implement valid login scenario using Playwright JavaScript
 
 QA Automation Engineer
 
-GitHub Profile:
-https://github.com/Sohel9147
-
-Repository:
-https://github.com/Sohel9147/playwright-javascript-automation-framework
-
 ---
 
 # 📄 License
 
-This project is created for learning, practice, and portfolio purposes.
+This project is created for learning and portfolio purposes.
