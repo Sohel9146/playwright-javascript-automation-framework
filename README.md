@@ -1,15 +1,20 @@
-# 🚀 Task-01: Valid Login Scenario | Playwright JavaScript Automation
+# 🚀 Task-07: Verify Dropdown Selection | Playwright JavaScript Automation
 
 ## 📖 Project Overview
 
-This task automates the **Valid Login** functionality of the SauceDemo web application using **Playwright with JavaScript**.
+This task automates the **Dropdown Selection** functionality of **The Internet Herokuapp** using **Playwright with JavaScript**.
 
-The objective is to verify that a registered user can successfully log in with valid credentials and is redirected to the Inventory page.
+The objective is to verify that a user can successfully select an option from the dropdown and validate that the selected option is correctly displayed.
 
-This implementation follows industry-standard automation practices including:
+This task also marks the beginning of the **Framework Version 2.0**, where reusable components such as the **BasePage** are introduced to reduce code duplication and improve framework maintainability.
+
+The implementation follows industry-standard automation practices including:
+
 - Page Object Model (POM)
-- External Test Data (JSON)
-- Reusable Page Objects
+- Base Page Architecture
+- Reusable Methods
+- JSON Test Data
+- Constants File
 - Clean Project Structure
 - Playwright Assertions
 
@@ -19,24 +24,24 @@ This implementation follows industry-standard automation practices including:
 
 | Field | Details |
 |-------|---------|
-| **Test Case ID** | TC_LOGIN_001 |
-| **Module** | Authentication |
-| **Feature** | Login |
-| **Scenario** | Valid Login |
+| **Test Case ID** | TC_DROPDOWN_001 |
+| **Module** | Dropdown |
+| **Feature** | Verify Dropdown Selection |
+| **Scenario** | Select and Validate Dropdown Option |
 | **Test Type** | Functional Testing |
 | **Execution Type** | Automated |
 | **Priority** | High |
-| **Severity** | Critical |
+| **Severity** | Medium |
 | **Automation Tool** | Playwright |
 | **Programming Language** | JavaScript |
-| **Framework Pattern** | Page Object Model (POM) |
+| **Framework Pattern** | Page Object Model (POM) + Base Page |
 | **Execution Status** | ✅ Passed |
 
 ---
 
 # 🎯 Objective
 
-To verify that a registered user can successfully log in to the SauceDemo application using valid credentials.
+Verify that a user can successfully select an option from the dropdown and validate that the selected value matches the expected value.
 
 ---
 
@@ -44,8 +49,8 @@ To verify that a registered user can successfully log in to the SauceDemo applic
 
 | Application | Value |
 |------------|-------|
-| Application Name | SauceDemo |
-| URL | https://www.saucedemo.com |
+| Application Name | The Internet Herokuapp |
+| URL | https://the-internet.herokuapp.com/dropdown |
 | Environment | Demo |
 
 ---
@@ -54,8 +59,8 @@ To verify that a registered user can successfully log in to the SauceDemo applic
 
 | Technology | Version |
 |------------|----------|
-| Node.js | Latest |
-| Playwright | Latest |
+| Node.js | v22.11.0 |
+| Playwright | v1.61.1 |
 | JavaScript | ES6 |
 | VS Code | IDE |
 | Git | Version Control |
@@ -69,16 +74,18 @@ To verify that a registered user can successfully log in to the SauceDemo applic
 playwright-practice-js
 │
 ├── pages
-│   └── LoginPage.js
+│   ├── BasePage.js
+│   └── DropdownPage.js
 │
 ├── tests
-│   └── login
-│       └── validLogin.spec.js
+│   └── dropdown
+│       └── verifyDropdownSelection.spec.js
 │
 ├── testData
-│   └── loginData.json
+│   └── dropdownData.json
 │
 ├── utils
+│   └── constants.js
 │
 ├── playwright.config.js
 │
@@ -89,22 +96,22 @@ playwright-practice-js
 
 ---
 
-# 📌 Preconditions
+# 📌 Test Data
 
-- Node.js is installed.
-- Playwright is installed.
-- Browser dependencies are installed.
-- User has internet connectivity.
-- SauceDemo website is accessible.
-- Valid login credentials are available.
+| Field | Value |
+|------|-------|
+| Dropdown Option | Option 1 |
+| Selected Value | 1 |
 
 ---
 
-# 🧪 Test Data
+# 📌 Preconditions
 
-| Username | Password |
-|----------|----------|
-| standard_user | secret_sauce |
+- Node.js is installed.
+- Playwright framework is installed.
+- Browser dependencies are installed.
+- Internet connection is available.
+- The Internet Herokuapp is accessible.
 
 ---
 
@@ -112,28 +119,24 @@ playwright-practice-js
 
 | Step | Action | Expected Result |
 |------|--------|----------------|
-| 1 | Launch SauceDemo application | Login page should open |
-| 2 | Enter valid username | Username should be entered successfully |
-| 3 | Enter valid password | Password should be entered successfully |
-| 4 | Click Login button | User should be authenticated |
-| 5 | Verify Inventory page | Products page should be displayed |
+| 1 | Launch Dropdown page | Page should open successfully |
+| 2 | Locate dropdown | Dropdown should be visible |
+| 3 | Select Option 1 | Option should be selected |
+| 4 | Validate selected value | Selected value should match expected value |
 
 ---
 
 # ✅ Expected Result
 
-- Login should be successful.
-- Inventory page should be displayed.
-- URL should contain **inventory.html**.
-- Products title should be visible.
+- Dropdown option should be selected successfully.
+- Selected value should exactly match the expected value.
 
 ---
 
 # 📌 Postconditions
 
-- User is logged in successfully.
-- Inventory page is displayed.
-- Application is ready for the next user actions such as Add to Cart or Checkout.
+- Dropdown selection completed successfully.
+- Selected option validated successfully.
 
 ---
 
@@ -142,8 +145,10 @@ playwright-practice-js
 This scenario is automated using:
 
 - Page Object Model (POM)
-- External JSON Test Data
+- Base Page Architecture
+- JSON Test Data
 - Reusable Methods
+- Constants File
 - Playwright Built-in Assertions
 - Async/Await Programming
 
@@ -151,20 +156,26 @@ This scenario is automated using:
 
 # 🎯 Playwright Concepts Used
 
-- Page Object Model
-- Locators
+- Page Object Model (POM)
+- Base Page
+- Inheritance
+- selectOption()
+- Playwright Locators
 - Assertions
-- Async / Await
 - JSON Test Data
-- Browser Context
-- Playwright Test Runner
+- Async / Await
 
 ---
 
 # ✔ Assertions Used
 
-- Verify URL
-- Verify Products Page Title
+- Verify selected dropdown value
+
+using Playwright
+
+```javascript
+await expect(locator).toHaveValue(expectedValue);
+```
 
 ---
 
@@ -176,16 +187,10 @@ Run all tests
 npx playwright test
 ```
 
-Run only Task-01
+Run only Task-07
 
 ```bash
-npx playwright test tests/login/validLogin.spec.js --headed
-```
-
-Run on Chromium
-
-```bash
-npx playwright test tests/login/validLogin.spec.js --project=chromium
+npx playwright test tests/dropdown/verifyDropdownSelection.spec.js --headed
 ```
 
 Generate HTML Report
@@ -204,43 +209,23 @@ npx playwright show-report
 
 ---
 
-# 📊 Test Execution Status
+# 📷 Test Execution Evidence
 
-| Execution Date | Browser | Result |
-|---------------|----------|--------|
-| DD-MM-YYYY | Chromium | ✅ Passed |
+## Dropdown Page
 
----
-
-# 📷 Execution Evidence
-
-## Login Page
-
-> Screenshot Path
-
-```text
-docs/task-01/login-page.png
-```
+![Dropdown Page](docs/task-07/dropdown-page.png)
 
 ---
 
-## Successful Login
+## Successful Dropdown Selection
 
-> Screenshot Path
-
-```text
-docs/task-01/inventory-page.png
-```
+![Dropdown Selected](docs/task-07/dropdown-selected.png)
 
 ---
 
 # 📈 Playwright HTML Report
 
-> Report Screenshot
-
-```text
-docs/task-01/playwright-report.png
-```
+![Playwright Report](docs/task-07/playwright-report.png)
 
 ---
 
@@ -248,47 +233,62 @@ docs/task-01/playwright-report.png
 
 | Branch |
 |---------|
-| feature/task-01-valid-login |
+| feature/task-07-dropdown-selection |
 
 Commit Message
 
 ```text
-Task-01: Implement valid login scenario using Playwright JavaScript
+Task-07: Verify Dropdown Selection using BasePage and Playwright
 ```
 
 ---
 
 # ⚠ Challenges Faced
 
-- Understanding Playwright project structure.
-- Implementing the Page Object Model.
-- Managing external JSON test data.
-- Learning Playwright assertions.
+- Implementing reusable BasePage methods.
+- Handling dropdown selection using Playwright.
+- Managing reusable constants.
+- Designing framework with inheritance.
+- Validating selected dropdown value.
 
 ---
 
 # 📚 Learning Outcome
 
-- Learned Playwright project setup.
-- Implemented Page Object Model.
-- Used reusable page methods.
-- Performed UI validations using assertions.
-- Executed Playwright tests from terminal.
-- Generated Playwright HTML reports.
-- Managed code using Git feature branches.
+- Introduced BasePage into the framework.
+- Learned inheritance using `extends`.
+- Implemented reusable methods.
+- Improved framework scalability.
+- Strengthened Playwright assertions.
+- Enhanced Page Object Model implementation.
 
 ---
 
 # 🚀 Future Enhancements
 
-- Data Driven Testing
-- Environment Configuration
+- Multiple dropdown validations
+- Data-Driven Testing
 - Cross Browser Execution
-- Parallel Test Execution
+- Parallel Execution
+- Retry Mechanism
+- Screenshot on Failure
 - Allure Reporting
-- CI/CD using GitHub Actions
-- Docker Integration
-- API Testing using Playwright
+- GitHub Actions CI/CD
+- Jenkins Integration
+
+---
+
+# 💡 Best Practices Followed
+
+- ✔ Page Object Model (POM)
+- ✔ Base Page Architecture
+- ✔ JSON Test Data
+- ✔ Reusable Methods
+- ✔ Constants File
+- ✔ Clean Folder Structure
+- ✔ Meaningful Naming Convention
+- ✔ Git Feature Branch Workflow
+- ✔ Professional Documentation
 
 ---
 
@@ -298,10 +298,12 @@ Task-01: Implement valid login scenario using Playwright JavaScript
 
 QA Automation Engineer
 
-GitHub Profile:
+### GitHub Profile
+
 https://github.com/Sohel9147
 
-Repository:
+### Repository
+
 https://github.com/Sohel9147/playwright-javascript-automation-framework
 
 ---
