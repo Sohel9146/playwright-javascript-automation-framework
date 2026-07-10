@@ -10,7 +10,7 @@ export class BasePage
         // Navigation 
         async navigate(url)
         {
-            await this.page.goto(url)
+            await this.page.goto(url, {waitUntil: 'load'})
         }
 
         // Click

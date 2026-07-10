@@ -49,3 +49,5 @@ export class ButtonsPage extends BasePage
             await this.page.waitForTimeout(2000)
         }
 }
+
+
