@@ -79,5 +79,17 @@ export class BasePage
             await this.page.locator(locator).click()
         }
 
+        // Wait for Element to be Visible
+        async waitForVisible(locator)
+        {
+            await this.page.locator(locator).waitFor({state:"visible"})
+        }
+
+        // Wait for element to disappear
+        async waitForHidden(locator)
+        {
+            await this.page.locator(locator).waitFor({state:"hidden"})
+        }
+
 
 }
