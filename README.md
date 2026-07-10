@@ -1,17 +1,20 @@
-# 🚀 Task-01: Valid Login Scenario | Playwright JavaScript Automation
+# 🚀 Task-09: Verify Dynamic Loading | Playwright JavaScript Automation
 
 ## 📖 Project Overview
 
-This task automates the **Valid Login** functionality of the SauceDemo web application using **Playwright with JavaScript**.
+This task automates the **Dynamic Loading** functionality available on **The Internet** website using **Playwright with JavaScript**.
 
-The objective is to verify that a registered user can successfully log in with valid credentials and is redirected to the Inventory page.
+The objective is to verify that dynamically loaded content appears successfully after clicking the **Start** button. This task demonstrates handling asynchronous UI elements using Playwright's explicit waiting mechanisms instead of static waits.
 
-This implementation follows industry-standard automation practices including:
+The framework follows industry-standard automation practices including:
+
 - Page Object Model (POM)
-- External Test Data (JSON)
-- Reusable Page Objects
-- Clean Project Structure
+- Base Page Architecture
+- Reusable Methods
+- JSON Test Data
+- Constants File
 - Playwright Assertions
+- ES Modules (Import / Export)
 
 ---
 
@@ -19,33 +22,34 @@ This implementation follows industry-standard automation practices including:
 
 | Field | Details |
 |-------|---------|
-| **Test Case ID** | TC_LOGIN_001 |
-| **Module** | Authentication |
-| **Feature** | Login |
-| **Scenario** | Valid Login |
+| **Test Case ID** | TC_DYNAMIC_001 |
+| **Module** | Dynamic Loading |
+| **Feature** | Dynamic Text Validation |
+| **Scenario** | Verify dynamically loaded text after clicking Start |
 | **Test Type** | Functional Testing |
 | **Execution Type** | Automated |
 | **Priority** | High |
-| **Severity** | Critical |
+| **Severity** | Medium |
 | **Automation Tool** | Playwright |
 | **Programming Language** | JavaScript |
-| **Framework Pattern** | Page Object Model (POM) |
+| **Framework Pattern** | Page Object Model (POM) + Base Page |
 | **Execution Status** | ✅ Passed |
 
 ---
 
 # 🎯 Objective
 
-To verify that a registered user can successfully log in to the SauceDemo application using valid credentials.
+Verify that the dynamically loaded text **"Hello World!"** is displayed after the loading process completes.
 
 ---
 
 # 🌐 Application Under Test
 
-| Application | Value |
-|------------|-------|
-| Application Name | SauceDemo |
-| URL | https://www.saucedemo.com |
+| Property | Value |
+|----------|-------|
+| Application | The Internet |
+| Module | Dynamic Loading |
+| URL | https://the-internet.herokuapp.com/dynamic_loading/1 |
 | Environment | Demo |
 
 ---
@@ -54,12 +58,28 @@ To verify that a registered user can successfully log in to the SauceDemo applic
 
 | Technology | Version |
 |------------|----------|
-| Node.js | Latest |
-| Playwright | Latest |
+| Node.js | v22.11.0 |
+| Playwright | v1.61.1 |
 | JavaScript | ES6 |
 | VS Code | IDE |
 | Git | Version Control |
 | GitHub | Repository Hosting |
+
+---
+
+# 🏗 Framework Enhancements
+
+## Version
+
+**Version 2.2**
+
+### New Enhancements
+
+- Added reusable `waitForVisible()` method.
+- Added reusable `waitForHidden()` method.
+- Improved synchronization handling.
+- Eliminated static waits (`waitForTimeout()`).
+- Enhanced BasePage reusability.
 
 ---
 
@@ -68,43 +88,49 @@ To verify that a registered user can successfully log in to the SauceDemo applic
 ```text
 playwright-practice-js
 │
-├── pages
-│   └── LoginPage.js
+├── docs
+│   └── task-09
+│       ├── README.md
+│       └── screenshots
 │
-├── tests
-│   └── login
-│       └── validLogin.spec.js
+├── pages
+│   ├── BasePage.js
+│   └── DynamicLoadingPage.js
 │
 ├── testData
-│   └── loginData.json
+│   └── dynamicLoadingData.json
+│
+├── tests
+│   └── dynamicLoading
+│       └── verifyDynamicLoading.spec.js
 │
 ├── utils
+│   └── constants.js
 │
 ├── playwright.config.js
 │
-├── package.json
-│
-└── README.md
+└── package.json
+```
+
+---
+
+# 📌 Test Data
+
+```json
+{
+    "expectedText": "Hello World!"
+}
 ```
 
 ---
 
 # 📌 Preconditions
 
-- Node.js is installed.
-- Playwright is installed.
-- Browser dependencies are installed.
-- User has internet connectivity.
-- SauceDemo website is accessible.
-- Valid login credentials are available.
-
----
-
-# 🧪 Test Data
-
-| Username | Password |
-|----------|----------|
-| standard_user | secret_sauce |
+- Node.js installed.
+- Playwright installed.
+- Browser dependencies installed.
+- Internet connection available.
+- The Internet application is accessible.
 
 ---
 
@@ -112,80 +138,86 @@ playwright-practice-js
 
 | Step | Action | Expected Result |
 |------|--------|----------------|
-| 1 | Launch SauceDemo application | Login page should open |
-| 2 | Enter valid username | Username should be entered successfully |
-| 3 | Enter valid password | Password should be entered successfully |
-| 4 | Click Login button | User should be authenticated |
-| 5 | Verify Inventory page | Products page should be displayed |
+| 1 | Launch Browser | Browser opens |
+| 2 | Navigate to Dynamic Loading page | Page loads successfully |
+| 3 | Click Start button | Loading starts |
+| 4 | Wait for loading to complete | Spinner disappears |
+| 5 | Validate loaded text | "Hello World!" displayed |
 
 ---
 
 # ✅ Expected Result
 
-- Login should be successful.
-- Inventory page should be displayed.
-- URL should contain **inventory.html**.
-- Products title should be visible.
+The following message should be displayed:
+
+```
+Hello World!
+```
 
 ---
 
 # 📌 Postconditions
 
-- User is logged in successfully.
-- Inventory page is displayed.
-- Application is ready for the next user actions such as Add to Cart or Checkout.
+- Dynamic content loaded successfully.
+- Validation completed.
+- Browser closed.
 
 ---
 
 # ⚙ Automation Approach
 
-This scenario is automated using:
-
 - Page Object Model (POM)
-- External JSON Test Data
-- Reusable Methods
-- Playwright Built-in Assertions
-- Async/Await Programming
+- Base Page Architecture
+- JSON Test Data
+- Explicit Waits
+- Playwright Assertions
 
 ---
 
 # 🎯 Playwright Concepts Used
 
-- Page Object Model
-- Locators
+- Dynamic Loading
+- Explicit Wait
+- waitFor()
 - Assertions
-- Async / Await
+- POM
+- BasePage
 - JSON Test Data
-- Browser Context
-- Playwright Test Runner
+
+---
+
+# 🔄 Reusable BasePage Methods Used
+
+| Method | Purpose |
+|---------|---------|
+| navigate() | Navigate to URL |
+| click() | Click Start button |
+| waitForHidden() | Wait until loading spinner disappears |
+| waitForVisible() | Wait until text becomes visible |
+| getLocator() | Return Playwright locator |
 
 ---
 
 # ✔ Assertions Used
 
-- Verify URL
-- Verify Products Page Title
+```javascript
+await expect(locator).toContainText(expectedText);
+```
 
 ---
 
-# ▶️ Test Execution
+# ▶ Test Execution
 
-Run all tests
+Run complete suite
 
 ```bash
 npx playwright test
 ```
 
-Run only Task-01
+Run Task-09
 
 ```bash
-npx playwright test tests/login/validLogin.spec.js --headed
-```
-
-Run on Chromium
-
-```bash
-npx playwright test tests/login/validLogin.spec.js --project=chromium
+npx playwright test tests/dynamicLoading/verifyDynamicLoading.spec.js --headed
 ```
 
 Generate HTML Report
@@ -198,97 +230,114 @@ npx playwright show-report
 
 # 🌍 Browser Support
 
-- ✅ Chromium
-- ✅ Firefox
-- ✅ WebKit
+- Chromium
+- Firefox
+- WebKit
 
 ---
 
 # 📊 Test Execution Status
 
-| Execution Date | Browser | Result |
-|---------------|----------|--------|
-| DD-MM-YYYY | Chromium | ✅ Passed |
+| Browser | Status |
+|----------|--------|
+| Chromium | ✅ Passed |
 
 ---
 
-# 📷 Execution Evidence
+# 📷 Test Execution Evidence
 
-## Login Page
+## Dynamic Loading Page Start Button
 
-> Screenshot Path
 
-```text
-docs/task-01/login-page.png
+![Dynamic Loading Page](docs/task-09/01-dynamic-loading-page-start-button.png)
+
+---
+
+## Dynamic Loading Page
+
+
+![Dynamic Loading Page](docs/task-09/02-dynamic-loading-page.png)
+
+---
+
+## Hello World Displayed
+
+
+![Hello World Displayed](docs/task-09/03-hello-world.png)
+
+---
+
+## Playwright HTML Report
+
+
+![Playwright HTML Report](docs/task-09/04-playwright-report.png)
+
+---
+
+# 🌿 Git Branch
+
 ```
-
----
-
-## Successful Login
-
-> Screenshot Path
-
-```text
-docs/task-01/inventory-page.png
-```
-
----
-
-# 📈 Playwright HTML Report
-
-> Report Screenshot
-
-```text
-docs/task-01/playwright-report.png
-```
-
----
-
-# 🌿 Git Branch Information
-
-| Branch |
-|---------|
-| feature/task-01-valid-login |
-
-Commit Message
-
-```text
-Task-01: Implement valid login scenario using Playwright JavaScript
+feature/task-09-dynamic-loading
 ```
 
 ---
 
 # ⚠ Challenges Faced
 
-- Understanding Playwright project structure.
-- Implementing the Page Object Model.
-- Managing external JSON test data.
-- Learning Playwright assertions.
+- Handling dynamically loaded elements.
+- Replacing static waits with explicit waits.
+- Synchronizing UI updates.
+
+---
+
+# ✅ Solution Implemented
+
+- Used reusable `waitForHidden()` method.
+- Used reusable `waitForVisible()` method.
+- Followed Page Object Model.
+- Used Playwright assertions.
 
 ---
 
 # 📚 Learning Outcome
 
-- Learned Playwright project setup.
-- Implemented Page Object Model.
-- Used reusable page methods.
-- Performed UI validations using assertions.
-- Executed Playwright tests from terminal.
-- Generated Playwright HTML reports.
-- Managed code using Git feature branches.
+- Learned Dynamic Loading handling.
+- Improved synchronization strategy.
+- Enhanced BasePage with reusable wait methods.
+- Avoided flaky tests by eliminating static waits.
+
+---
+
+# 💡 Best Practices Followed
+
+- Page Object Model
+- Base Page Architecture
+- Explicit Waits
+- JSON Test Data
+- Feature Branch Workflow
+- Clean Code
+
+---
+
+# 📈 Framework Metrics
+
+| Metric | Value |
+|---------|------|
+| Test Cases | 1 |
+| Page Objects | 1 |
+| BasePage Methods Used | 5 |
+| Assertions | 1 |
+| JSON Files | 1 |
 
 ---
 
 # 🚀 Future Enhancements
 
-- Data Driven Testing
-- Environment Configuration
-- Cross Browser Execution
-- Parallel Test Execution
+- Custom Wait Utilities
+- Screenshot on Failure
+- Retry Mechanism
 - Allure Reporting
-- CI/CD using GitHub Actions
-- Docker Integration
-- API Testing using Playwright
+- GitHub Actions Integration
 
 ---
 
@@ -298,14 +347,8 @@ Task-01: Implement valid login scenario using Playwright JavaScript
 
 QA Automation Engineer
 
-GitHub Profile:
-https://github.com/Sohel9147
-
-Repository:
-https://github.com/Sohel9147/playwright-javascript-automation-framework
-
 ---
 
 # 📄 License
 
-This project is created for learning, practice, and portfolio purposes.
+This project is created for learning and portfolio purposes.
