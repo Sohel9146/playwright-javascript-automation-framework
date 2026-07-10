@@ -1,17 +1,24 @@
-# 🚀 Task-01: Valid Login Scenario | Playwright JavaScript Automation
+# 🚀 Task-10: Verify Image Presence | Playwright JavaScript Automation
 
-## 📖 Project Overview
+---
 
-This task automates the **Valid Login** functionality of the SauceDemo web application using **Playwright with JavaScript**.
+# 📖 Project Overview
 
-The objective is to verify that a registered user can successfully log in with valid credentials and is redirected to the Inventory page.
+This task automates the verification of the website logo available on the **Automation Exercise** homepage using **Playwright with JavaScript**.
 
-This implementation follows industry-standard automation practices including:
+The objective is to verify that the logo image is displayed successfully after the homepage loads.
+
+Unlike previous tasks, no new reusable methods were added to the framework. Instead, this task demonstrates the effective reuse of the existing **BasePage** methods to synchronize the page and validate UI elements.
+
+The framework follows industry-standard automation practices including:
+
 - Page Object Model (POM)
-- External Test Data (JSON)
-- Reusable Page Objects
-- Clean Project Structure
+- Base Page Architecture
+- Reusable Methods
+- JSON Test Data
+- Constants File
 - Playwright Assertions
+- ES Modules (Import / Export)
 
 ---
 
@@ -19,33 +26,34 @@ This implementation follows industry-standard automation practices including:
 
 | Field | Details |
 |-------|---------|
-| **Test Case ID** | TC_LOGIN_001 |
-| **Module** | Authentication |
-| **Feature** | Login |
-| **Scenario** | Valid Login |
+| **Test Case ID** | TC_IMAGE_001 |
+| **Module** | Home Page |
+| **Feature** | Logo Verification |
+| **Scenario** | Verify Website Logo Visibility |
 | **Test Type** | Functional Testing |
 | **Execution Type** | Automated |
 | **Priority** | High |
-| **Severity** | Critical |
+| **Severity** | Medium |
 | **Automation Tool** | Playwright |
 | **Programming Language** | JavaScript |
-| **Framework Pattern** | Page Object Model (POM) |
+| **Framework Pattern** | Page Object Model (POM) + BasePage |
 | **Execution Status** | ✅ Passed |
 
 ---
 
 # 🎯 Objective
 
-To verify that a registered user can successfully log in to the SauceDemo application using valid credentials.
+Verify that the website logo is displayed successfully after navigating to the Automation Exercise homepage.
 
 ---
 
 # 🌐 Application Under Test
 
-| Application | Value |
-|------------|-------|
-| Application Name | SauceDemo |
-| URL | https://www.saucedemo.com |
+| Property | Value |
+|----------|-------|
+| Application | Automation Exercise |
+| Module | Home Page |
+| URL | https://automationexercise.com/ |
 | Environment | Demo |
 
 ---
@@ -54,12 +62,31 @@ To verify that a registered user can successfully log in to the SauceDemo applic
 
 | Technology | Version |
 |------------|----------|
-| Node.js | Latest |
-| Playwright | Latest |
+| Node.js | v22.11.0 |
+| Playwright | v1.61.1 |
 | JavaScript | ES6 |
 | VS Code | IDE |
 | Git | Version Control |
 | GitHub | Repository Hosting |
+
+---
+
+# 🏗 Framework Enhancement
+
+## Version
+
+**Version 2.3**
+
+### Framework Improvements
+
+This task focuses on **framework reusability** instead of introducing new methods.
+
+The `verifyLogoDisplayed()` method internally reuses two existing BasePage methods:
+
+- ✅ `waitForVisible(locator)`
+- ✅ `verifyVisible(locator)`
+
+This improves test stability by ensuring the logo becomes visible before performing the assertion.
 
 ---
 
@@ -68,43 +95,48 @@ To verify that a registered user can successfully log in to the SauceDemo applic
 ```text
 playwright-practice-js
 │
-├── pages
-│   └── LoginPage.js
+├── docs
+│   └── task-10
+│       ├── README.md
+│       └── screenshots
 │
-├── tests
-│   └── login
-│       └── validLogin.spec.js
+├── pages
+│   └── AutomationExerciseHomePage.js
 │
 ├── testData
-│   └── loginData.json
+│   └── homePageData.json
+│
+├── tests
+│   └── homepage
+│       └── verifyHomePageLogo.spec.js
 │
 ├── utils
+│   └── constants.js
 │
 ├── playwright.config.js
 │
-├── package.json
-│
-└── README.md
+└── package.json
+```
+
+---
+
+# 📌 Test Data
+
+```json
+{
+    "logoAltText": "Website for automation practice"
+}
 ```
 
 ---
 
 # 📌 Preconditions
 
-- Node.js is installed.
-- Playwright is installed.
-- Browser dependencies are installed.
-- User has internet connectivity.
-- SauceDemo website is accessible.
-- Valid login credentials are available.
-
----
-
-# 🧪 Test Data
-
-| Username | Password |
-|----------|----------|
-| standard_user | secret_sauce |
+- Node.js installed
+- Playwright installed
+- Browser dependencies installed
+- Internet connection available
+- Automation Exercise website is accessible
 
 ---
 
@@ -112,80 +144,77 @@ playwright-practice-js
 
 | Step | Action | Expected Result |
 |------|--------|----------------|
-| 1 | Launch SauceDemo application | Login page should open |
-| 2 | Enter valid username | Username should be entered successfully |
-| 3 | Enter valid password | Password should be entered successfully |
-| 4 | Click Login button | User should be authenticated |
-| 5 | Verify Inventory page | Products page should be displayed |
+| 1 | Launch Browser | Browser opens successfully |
+| 2 | Navigate to Home Page | Home page loads successfully |
+| 3 | Wait until logo is visible | Logo becomes visible |
+| 4 | Verify logo visibility | Assertion passes |
 
 ---
 
 # ✅ Expected Result
 
-- Login should be successful.
-- Inventory page should be displayed.
-- URL should contain **inventory.html**.
-- Products title should be visible.
+The Automation Exercise logo should be displayed successfully.
 
 ---
 
 # 📌 Postconditions
 
-- User is logged in successfully.
-- Inventory page is displayed.
-- Application is ready for the next user actions such as Add to Cart or Checkout.
+- Logo validation completed successfully.
+- Browser closed.
 
 ---
 
 # ⚙ Automation Approach
 
-This scenario is automated using:
-
 - Page Object Model (POM)
-- External JSON Test Data
+- BasePage Architecture
 - Reusable Methods
-- Playwright Built-in Assertions
-- Async/Await Programming
+- Playwright Assertions
+- ES Modules
 
 ---
 
 # 🎯 Playwright Concepts Used
 
-- Page Object Model
-- Locators
+- Image Validation
+- Element Visibility
 - Assertions
-- Async / Await
-- JSON Test Data
-- Browser Context
-- Playwright Test Runner
+- CSS Selectors
+- Page Object Model
+- BasePage Reusability
 
 ---
 
-# ✔ Assertions Used
+# 🔄 BasePage Methods Reused
 
-- Verify URL
-- Verify Products Page Title
+| Method | Purpose |
+|---------|---------|
+| navigate() | Navigate to application |
+| waitForVisible() | Wait until logo becomes visible |
+| verifyVisible() | Validate logo visibility |
 
 ---
 
-# ▶️ Test Execution
+# ✔ Assertion Used
 
-Run all tests
+```javascript
+await expect(locator).toBeVisible();
+```
+
+---
+
+# ▶ Test Execution
+
+Run complete suite
 
 ```bash
 npx playwright test
 ```
 
-Run only Task-01
+Run Task-10
 
 ```bash
-npx playwright test tests/login/validLogin.spec.js --headed
-```
-
-Run on Chromium
-
-```bash
-npx playwright test tests/login/validLogin.spec.js --project=chromium
+npx playwright test tests/homepage/verifyHomePageLogo.spec.js --headed
 ```
 
 Generate HTML Report
@@ -198,97 +227,103 @@ npx playwright show-report
 
 # 🌍 Browser Support
 
-- ✅ Chromium
-- ✅ Firefox
-- ✅ WebKit
+- Chromium
+- Firefox
+- WebKit
 
 ---
 
 # 📊 Test Execution Status
 
-| Execution Date | Browser | Result |
-|---------------|----------|--------|
-| DD-MM-YYYY | Chromium | ✅ Passed |
+| Browser | Result |
+|----------|--------|
+| Chromium | ✅ Passed |
 
 ---
 
-# 📷 Execution Evidence
+# 📷 Test Execution Evidence
 
-## Login Page
+## Home Page
 
-> Screenshot Path
+![Home Page](docs/task-10/01-home-page.png)
 
-```text
-docs/task-01/login-page.png
+---
+
+## Logo Validation
+
+![Logo Validation](docs/task-10/02-logo-visible.png)
+
+---
+
+## Playwright HTML Report
+
+![Playwright HTML Report](docs/task-10/03-playwright-report.png)
+
+---
+
+# 🌿 Git Branch
+
 ```
-
----
-
-## Successful Login
-
-> Screenshot Path
-
-```text
-docs/task-01/inventory-page.png
-```
-
----
-
-# 📈 Playwright HTML Report
-
-> Report Screenshot
-
-```text
-docs/task-01/playwright-report.png
-```
-
----
-
-# 🌿 Git Branch Information
-
-| Branch |
-|---------|
-| feature/task-01-valid-login |
-
-Commit Message
-
-```text
-Task-01: Implement valid login scenario using Playwright JavaScript
+feature/task-10-verify-image-presence
 ```
 
 ---
 
 # ⚠ Challenges Faced
 
-- Understanding Playwright project structure.
-- Implementing the Page Object Model.
-- Managing external JSON test data.
-- Learning Playwright assertions.
+- Synchronizing page load before validating the logo.
+- Ensuring the image is visible before assertion.
+
+---
+
+# ✅ Solution Implemented
+
+- Reused `waitForVisible()` from BasePage.
+- Reused `verifyVisible()` from BasePage.
+- Followed Page Object Model.
+- Used CSS selector for logo identification.
 
 ---
 
 # 📚 Learning Outcome
 
-- Learned Playwright project setup.
-- Implemented Page Object Model.
-- Used reusable page methods.
-- Performed UI validations using assertions.
-- Executed Playwright tests from terminal.
-- Generated Playwright HTML reports.
-- Managed code using Git feature branches.
+- Learned image validation using Playwright.
+- Improved framework reusability.
+- Understood the importance of synchronization before assertions.
+- Continued following industry-standard Page Object Model.
+
+---
+
+# 💡 Best Practices Followed
+
+- Page Object Model
+- BasePage Reusability
+- Explicit Waits
+- Clean Code
+- Feature Branch Workflow
+- Professional Folder Structure
+
+---
+
+# 📈 Framework Metrics
+
+| Metric | Value |
+|---------|------|
+| Test Cases | 1 |
+| Page Objects | 1 |
+| BasePage Methods Reused | 3 |
+| Assertions | 1 |
+| JSON Files | 1 |
 
 ---
 
 # 🚀 Future Enhancements
 
-- Data Driven Testing
-- Environment Configuration
-- Cross Browser Execution
-- Parallel Test Execution
+- Screenshot on Failure
+- Soft Assertions
 - Allure Reporting
-- CI/CD using GitHub Actions
-- Docker Integration
-- API Testing using Playwright
+- GitHub Actions
+- Jenkins Integration
 
 ---
 
@@ -298,14 +333,8 @@ Task-01: Implement valid login scenario using Playwright JavaScript
 
 QA Automation Engineer
 
-GitHub Profile:
-https://github.com/Sohel9147
-
-Repository:
-https://github.com/Sohel9147/playwright-javascript-automation-framework
-
 ---
 
 # 📄 License
 
-This project is created for learning, practice, and portfolio purposes.
+This project is created for learning and portfolio purposes.
