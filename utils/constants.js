@@ -17,3 +17,5 @@ export const DYNAMIC_LOADING_URL    = "https://the-internet.herokuapp.com/dynami
 export const HOME_PAGE_URL          = "https://automationexercise.com/"
 
 export const JAVASCRIPT_ALERT_URL   = "https://the-internet.herokuapp.com/javascript_alerts" 
+
+export const FILE_UPLOAD_URL        = "https://the-internet.herokuapp.com/upload"

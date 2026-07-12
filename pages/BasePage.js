@@ -118,5 +118,11 @@ export class BasePage
             })
         }
 
+        // Upload Files
+        async uploadFile(locator, filepath)
+        {
+            await this.page.locator(locator).setInputFiles(filepath)
+        }
+
 
 }
