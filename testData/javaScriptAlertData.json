@@ -1,0 +1,6 @@
+{
+    "text"                          :   "sohel",
+    "expectedResult_1"              :   "You successfully clicked an alert",
+    "expectedResult_2"              :   "You clicked: Ok",
+    "expectedResult_3"              :   "You entered: sohel"
+}

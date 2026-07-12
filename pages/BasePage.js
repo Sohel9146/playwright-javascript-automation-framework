@@ -91,5 +91,32 @@ export class BasePage
             await this.page.locator(locator).waitFor({state:"hidden"})
         }
 
+        // Accept Alert
+        async acceptAlert()
+        {
+            this.page.once("dialog", async (dialog) => 
+            {
+                await dialog.accept()
+            })
+        }
+
+        // Dismiss Alert 
+        async dismissAlert()
+        {
+            this.page.once("dialog", async(dialog) => 
+            {
+                await dialog.dismiss();
+            })
+        }
+
+        // Prompt Alert 
+        async promptAlert(text)
+        {
+            this.page.once("dialog",async(dialog) => 
+            {
+                await dialog.accept(text)
+            })
+        }
+
 
 }
