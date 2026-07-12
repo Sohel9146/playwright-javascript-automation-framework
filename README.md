@@ -1,17 +1,22 @@
-# 🚀 Task-01: Valid Login Scenario | Playwright JavaScript Automation
+# 🚀 Task-12: Verify File Upload | Playwright JavaScript Automation
 
-## 📖 Project Overview
+---
 
-This task automates the **Valid Login** functionality of the SauceDemo web application using **Playwright with JavaScript**.
+# 📖 Project Overview
 
-The objective is to verify that a registered user can successfully log in with valid credentials and is redirected to the Inventory page.
+This task automates the File Upload functionality available on **The Internet Herokuapp** using **Playwright with JavaScript**.
 
-This implementation follows industry-standard automation practices including:
+The automation validates that a user can upload a file successfully and verifies the uploaded filename displayed on the application.
+
+The framework follows industry-standard automation practices including:
+
 - Page Object Model (POM)
-- External Test Data (JSON)
-- Reusable Page Objects
-- Clean Project Structure
+- Base Page Architecture
+- Reusable Methods
+- JSON Test Data
+- Constants File
 - Playwright Assertions
+- ES Modules (Import / Export)
 
 ---
 
@@ -19,14 +24,14 @@ This implementation follows industry-standard automation practices including:
 
 | Field | Details |
 |-------|---------|
-| **Test Case ID** | TC_LOGIN_001 |
-| **Module** | Authentication |
-| **Feature** | Login |
-| **Scenario** | Valid Login |
+| **Task** | Task-14 |
+| **Module** | File Upload |
+| **Feature** | Upload File |
+| **Scenario** | Upload a file and verify uploaded filename |
 | **Test Type** | Functional Testing |
 | **Execution Type** | Automated |
 | **Priority** | High |
-| **Severity** | Critical |
+| **Severity** | Medium |
 | **Automation Tool** | Playwright |
 | **Programming Language** | JavaScript |
 | **Framework Pattern** | Page Object Model (POM) |
@@ -36,16 +41,17 @@ This implementation follows industry-standard automation practices including:
 
 # 🎯 Objective
 
-To verify that a registered user can successfully log in to the SauceDemo application using valid credentials.
+Validate that a user can successfully upload a file and verify that the uploaded filename is displayed correctly.
 
 ---
 
 # 🌐 Application Under Test
 
-| Application | Value |
-|------------|-------|
-| Application Name | SauceDemo |
-| URL | https://www.saucedemo.com |
+| Property | Value |
+|----------|-------|
+| Application | The Internet Herokuapp |
+| Module | File Upload |
+| URL | https://the-internet.herokuapp.com/upload |
 | Environment | Demo |
 
 ---
@@ -54,12 +60,40 @@ To verify that a registered user can successfully log in to the SauceDemo applic
 
 | Technology | Version |
 |------------|----------|
-| Node.js | Latest |
-| Playwright | Latest |
+| Node.js | v22.11.0 |
+| Playwright | v1.61.1 |
 | JavaScript | ES6 |
 | VS Code | IDE |
 | Git | Version Control |
 | GitHub | Repository Hosting |
+
+---
+
+# 🏗 Framework Enhancement
+
+## Version
+
+**Version 2.8**
+
+### New Reusable Method Added to BasePage
+
+This task enhanced the framework by introducing a reusable method for file upload.
+
+### Added Method
+
+| Method | Purpose |
+|---------|---------|
+| uploadFile(locator, filePath) | Upload file using Playwright setInputFiles() |
+
+This reusable method can now be used for future scenarios like:
+
+- Resume Upload
+- Profile Picture Upload
+- Document Upload
+- Image Upload
+- Attachment Upload
+
+without rewriting upload logic.
 
 ---
 
@@ -68,124 +102,142 @@ To verify that a registered user can successfully log in to the SauceDemo applic
 ```text
 playwright-practice-js
 │
-├── pages
-│   └── LoginPage.js
+├── docs
+│   └── task-14
+│       ├── README.md
+│       └── screenshots
 │
-├── tests
-│   └── login
-│       └── validLogin.spec.js
+├── pages
+│   └── FileUploadPage.js
 │
 ├── testData
-│   └── loginData.json
+│   ├── fileUploadData.json
+│   └── sampleFile.txt
+│
+├── tests
+│   └── upload
+│       └── verifyFileUpload.spec.js
 │
 ├── utils
+│   └── constants.js
 │
 ├── playwright.config.js
 │
-├── package.json
-│
-└── README.md
+└── package.json
+```
+
+---
+
+# 📌 Test Data
+
+### fileUploadData.json
+
+```json
+{
+    "fileName": "sampleFile.txt"
+}
+```
+
+### Sample File
+
+```
+sampleFile.txt
 ```
 
 ---
 
 # 📌 Preconditions
 
-- Node.js is installed.
-- Playwright is installed.
-- Browser dependencies are installed.
-- User has internet connectivity.
-- SauceDemo website is accessible.
-- Valid login credentials are available.
-
----
-
-# 🧪 Test Data
-
-| Username | Password |
-|----------|----------|
-| standard_user | secret_sauce |
+- Node.js installed
+- Playwright installed
+- Browser dependencies installed
+- Internet connection available
+- Sample file present inside testData folder
 
 ---
 
 # 📝 Test Steps
 
-| Step | Action | Expected Result |
-|------|--------|----------------|
-| 1 | Launch SauceDemo application | Login page should open |
-| 2 | Enter valid username | Username should be entered successfully |
-| 3 | Enter valid password | Password should be entered successfully |
-| 4 | Click Login button | User should be authenticated |
-| 5 | Verify Inventory page | Products page should be displayed |
+1. Launch browser
+2. Navigate to File Upload page
+3. Click Choose File
+4. Upload sampleFile.txt
+5. Click Upload button
+6. Verify uploaded filename
 
 ---
 
 # ✅ Expected Result
 
-- Login should be successful.
-- Inventory page should be displayed.
-- URL should contain **inventory.html**.
-- Products title should be visible.
+```
+File Uploaded!
+
+sampleFile.txt
+```
 
 ---
 
 # 📌 Postconditions
 
-- User is logged in successfully.
-- Inventory page is displayed.
-- Application is ready for the next user actions such as Add to Cart or Checkout.
+- File uploaded successfully.
+- Uploaded filename displayed.
+- Browser closed.
 
 ---
 
 # ⚙ Automation Approach
 
-This scenario is automated using:
-
 - Page Object Model (POM)
-- External JSON Test Data
-- Reusable Methods
-- Playwright Built-in Assertions
-- Async/Await Programming
+- BasePage Architecture
+- JSON Test Data
+- Constants File
+- Reusable Upload Method
+- Playwright Assertions
 
 ---
 
 # 🎯 Playwright Concepts Used
 
-- Page Object Model
-- Locators
+- setInputFiles()
+- File Upload
+- path.resolve()
 - Assertions
-- Async / Await
-- JSON Test Data
-- Browser Context
-- Playwright Test Runner
+- Page Object Model
+- BasePage Reusability
+
+---
+
+# 🔄 BasePage Methods Used
+
+| Method | Purpose |
+|---------|---------|
+| navigate() | Navigate to application |
+| uploadFile() | Upload file |
+| click() | Click Upload button |
+| verifyText() | Verify uploaded filename |
 
 ---
 
 # ✔ Assertions Used
 
-- Verify URL
-- Verify Products Page Title
+```javascript
+await expect(locator).toContainText(expectedText);
+```
 
 ---
 
-# ▶️ Test Execution
+# ▶ Test Execution
 
-Run all tests
+Run complete suite
 
 ```bash
 npx playwright test
 ```
 
-Run only Task-01
+Run Task-14
 
 ```bash
-npx playwright test tests/login/validLogin.spec.js --headed
-```
-
-Run on Chromium
-
-```bash
-npx playwright test tests/login/validLogin.spec.js --project=chromium
+npx playwright test tests/upload/verifyFileUpload.spec.js --headed
 ```
 
 Generate HTML Report
@@ -198,97 +250,113 @@ npx playwright show-report
 
 # 🌍 Browser Support
 
-- ✅ Chromium
-- ✅ Firefox
-- ✅ WebKit
+- Chromium
+- Firefox
+- WebKit
 
 ---
 
 # 📊 Test Execution Status
 
-| Execution Date | Browser | Result |
-|---------------|----------|--------|
-| DD-MM-YYYY | Chromium | ✅ Passed |
+| Browser | Result |
+|----------|--------|
+| Chromium | ✅ Passed |
 
 ---
 
-# 📷 Execution Evidence
+# 📷 Test Execution Evidence
 
-## Login Page
+## Uploaded File
 
-> Screenshot Path
 
-```text
-docs/task-01/login-page.png
+![Uploaded File](docs/task-12/01-file-upload.png)
+
+
+---
+
+## Upload Success Message
+
+
+![Upload Success Message](docs/task-12/02-upload-success.png)
+
+
+---
+
+## Playwright HTML Report
+
+
+![Playwright HTML Report](docs/task-12/03-playwright-report.png)
+
+
+---
+
+# 🌿 Git Branch
+
 ```
-
----
-
-## Successful Login
-
-> Screenshot Path
-
-```text
-docs/task-01/inventory-page.png
-```
-
----
-
-# 📈 Playwright HTML Report
-
-> Report Screenshot
-
-```text
-docs/task-01/playwright-report.png
-```
-
----
-
-# 🌿 Git Branch Information
-
-| Branch |
-|---------|
-| feature/task-01-valid-login |
-
-Commit Message
-
-```text
-Task-01: Implement valid login scenario using Playwright JavaScript
+feature/task-14-file-upload
 ```
 
 ---
 
 # ⚠ Challenges Faced
 
-- Understanding Playwright project structure.
-- Implementing the Page Object Model.
-- Managing external JSON test data.
-- Learning Playwright assertions.
+- Understanding Playwright file upload mechanism.
+- Managing file paths across different operating systems.
+- Implementing reusable upload functionality.
+- Using absolute paths with path.resolve().
+
+---
+
+# ✅ Solution Implemented
+
+- Used Playwright's setInputFiles() for uploading files.
+- Used path.resolve() to generate an absolute file path.
+- Added uploadFile() as a reusable BasePage method.
+- Verified uploaded filename using Playwright assertions.
 
 ---
 
 # 📚 Learning Outcome
 
-- Learned Playwright project setup.
-- Implemented Page Object Model.
-- Used reusable page methods.
-- Performed UI validations using assertions.
-- Executed Playwright tests from terminal.
-- Generated Playwright HTML reports.
-- Managed code using Git feature branches.
+- Learned file upload automation using Playwright.
+- Understood the difference between relative and absolute file paths.
+- Learned how path.resolve() creates platform-independent paths.
+- Improved framework reusability with a dedicated upload method.
+
+---
+
+# 💡 Best Practices Followed
+
+- Page Object Model
+- BasePage Reusability
+- JSON Test Data
+- Clean Code
+- Feature Branch Workflow
+- Reusable Utility Methods
+
+---
+
+# 📈 Framework Metrics
+
+| Metric | Value |
+|--------|-------|
+| Test Cases | 1 |
+| Assertions | 1 |
+| New BasePage Methods | 1 |
+| Uploaded Files | 1 |
+| JSON Files | 1 |
 
 ---
 
 # 🚀 Future Enhancements
 
-- Data Driven Testing
-- Environment Configuration
-- Cross Browser Execution
-- Parallel Test Execution
-- Allure Reporting
-- CI/CD using GitHub Actions
-- Docker Integration
-- API Testing using Playwright
+- Multiple File Upload
+- Drag and Drop Upload
+- File Size Validation
+- Screenshot on Failure
+- Allure Report
+- GitHub Actions
+- Jenkins Integration
 
 ---
 
@@ -298,14 +366,8 @@ Task-01: Implement valid login scenario using Playwright JavaScript
 
 QA Automation Engineer
 
-GitHub Profile:
-https://github.com/Sohel9147
-
-Repository:
-https://github.com/Sohel9147/playwright-javascript-automation-framework
-
 ---
 
 # 📄 License
 
-This project is created for learning, practice, and portfolio purposes.
+This project is created for learning and portfolio purposes.
