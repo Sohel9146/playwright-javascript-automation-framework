@@ -124,5 +124,20 @@ export class BasePage
             await this.page.locator(locator).setInputFiles(filepath)
         }
 
+        // File Download 
+        // Start waiting for download before clicking. Note no await.
+        async downloadFile(Locator, savepath)
+        {
+                const downloadPromise   =   this.page.waitForEvent("download")
+
+                await this.click(Locator)
+
+                const download  =   await downloadPromise
+
+                await download.saveAs(savepath) 
+
+                return download;
+        }
+
 
 }

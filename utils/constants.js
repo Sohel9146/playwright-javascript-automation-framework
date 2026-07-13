@@ -19,3 +19,6 @@ export const HOME_PAGE_URL          = "https://automationexercise.com/"
 export const JAVASCRIPT_ALERT_URL   = "https://the-internet.herokuapp.com/javascript_alerts" 
 
 export const FILE_UPLOAD_URL        = "https://the-internet.herokuapp.com/upload"
+
+export const FILE_DOWNLOAD_URL      = "https://the-internet.herokuapp.com/download"
+
