@@ -1,17 +1,22 @@
-# 🚀 Task-01: Valid Login Scenario | Playwright JavaScript Automation
+# 🚀 Task-13: Verify File Download | Playwright JavaScript Automation
 
-## 📖 Project Overview
+---
 
-This task automates the **Valid Login** functionality of the SauceDemo web application using **Playwright with JavaScript**.
+# 📖 Project Overview
 
-The objective is to verify that a registered user can successfully log in with valid credentials and is redirected to the Inventory page.
+This task automates the File Download functionality available on **The Internet Herokuapp** using **Playwright with JavaScript**.
 
-This implementation follows industry-standard automation practices including:
+The automation verifies that a user can successfully download a file, save it to a local directory, and validate the downloaded filename.
+
+The framework follows industry-standard automation practices including:
+
 - Page Object Model (POM)
-- External Test Data (JSON)
-- Reusable Page Objects
-- Clean Project Structure
+- Base Page Architecture
+- Reusable Methods
+- JSON Test Data
+- Constants File
 - Playwright Assertions
+- ES Modules (Import / Export)
 
 ---
 
@@ -19,14 +24,14 @@ This implementation follows industry-standard automation practices including:
 
 | Field | Details |
 |-------|---------|
-| **Test Case ID** | TC_LOGIN_001 |
-| **Module** | Authentication |
-| **Feature** | Login |
-| **Scenario** | Valid Login |
+| **Task** | Task-15 |
+| **Module** | File Download |
+| **Feature** | Download File |
+| **Scenario** | Download file and verify downloaded filename |
 | **Test Type** | Functional Testing |
 | **Execution Type** | Automated |
 | **Priority** | High |
-| **Severity** | Critical |
+| **Severity** | Medium |
 | **Automation Tool** | Playwright |
 | **Programming Language** | JavaScript |
 | **Framework Pattern** | Page Object Model (POM) |
@@ -36,16 +41,17 @@ This implementation follows industry-standard automation practices including:
 
 # 🎯 Objective
 
-To verify that a registered user can successfully log in to the SauceDemo application using valid credentials.
+Validate that a file can be downloaded successfully and verify that the downloaded filename matches the selected file.
 
 ---
 
 # 🌐 Application Under Test
 
-| Application | Value |
-|------------|-------|
-| Application Name | SauceDemo |
-| URL | https://www.saucedemo.com |
+| Property | Value |
+|----------|-------|
+| Application | The Internet Herokuapp |
+| Module | File Download |
+| URL | https://the-internet.herokuapp.com/download |
 | Environment | Demo |
 
 ---
@@ -54,12 +60,38 @@ To verify that a registered user can successfully log in to the SauceDemo applic
 
 | Technology | Version |
 |------------|----------|
-| Node.js | Latest |
-| Playwright | Latest |
+| Node.js | v22.11.0 |
+| Playwright | v1.61.1 |
 | JavaScript | ES6 |
 | VS Code | IDE |
 | Git | Version Control |
 | GitHub | Repository Hosting |
+
+---
+
+# 🏗 Framework Enhancement
+
+## Version
+
+**Version 2.9**
+
+### New Reusable Method Added to BasePage
+
+| Method | Purpose |
+|---------|---------|
+| downloadFile(downloadLocator, savePath) | Downloads a file and saves it to a specified location |
+
+This reusable method can now be used for:
+
+- Invoice Download
+- Report Export
+- PDF Download
+- Excel Download
+- CSV Download
+- Image Download
+- Attachment Download
+
+without rewriting download logic.
 
 ---
 
@@ -68,124 +100,126 @@ To verify that a registered user can successfully log in to the SauceDemo applic
 ```text
 playwright-practice-js
 │
-├── pages
-│   └── LoginPage.js
+├── docs
+│   └── task-15
+│       ├── README.md
+│       └── screenshots
 │
-├── tests
-│   └── login
-│       └── validLogin.spec.js
+├── downloads
+│
+├── pages
+│   └── FileDownloadPage.js
 │
 ├── testData
-│   └── loginData.json
+│   └── fileDownloadData.json
+│
+├── tests
+│   └── download
+│       └── verifyFileDownload.spec.js
 │
 ├── utils
+│   └── constants.js
 │
 ├── playwright.config.js
 │
-├── package.json
-│
-└── README.md
+└── package.json
 ```
 
 ---
 
 # 📌 Preconditions
 
-- Node.js is installed.
-- Playwright is installed.
-- Browser dependencies are installed.
-- User has internet connectivity.
-- SauceDemo website is accessible.
-- Valid login credentials are available.
-
----
-
-# 🧪 Test Data
-
-| Username | Password |
-|----------|----------|
-| standard_user | secret_sauce |
+- Node.js installed
+- Playwright installed
+- Browser dependencies installed
+- Internet connection available
+- Downloads folder available inside the project
 
 ---
 
 # 📝 Test Steps
 
-| Step | Action | Expected Result |
-|------|--------|----------------|
-| 1 | Launch SauceDemo application | Login page should open |
-| 2 | Enter valid username | Username should be entered successfully |
-| 3 | Enter valid password | Password should be entered successfully |
-| 4 | Click Login button | User should be authenticated |
-| 5 | Verify Inventory page | Products page should be displayed |
+1. Launch browser.
+2. Navigate to File Download page.
+3. Capture the first available filename.
+4. Click the first download link.
+5. Wait for the download event.
+6. Save the downloaded file to the downloads folder.
+7. Verify the downloaded filename.
 
 ---
 
 # ✅ Expected Result
 
-- Login should be successful.
-- Inventory page should be displayed.
-- URL should contain **inventory.html**.
-- Products title should be visible.
+- File should download successfully.
+- File should be saved in the downloads folder.
+- Downloaded filename should match the selected filename.
 
 ---
 
 # 📌 Postconditions
 
-- User is logged in successfully.
-- Inventory page is displayed.
-- Application is ready for the next user actions such as Add to Cart or Checkout.
+- File downloaded successfully.
+- Download saved locally.
+- Browser closed.
 
 ---
 
 # ⚙ Automation Approach
 
-This scenario is automated using:
-
 - Page Object Model (POM)
-- External JSON Test Data
-- Reusable Methods
-- Playwright Built-in Assertions
-- Async/Await Programming
+- BasePage Architecture
+- JSON Test Data
+- Constants File
+- Reusable Download Method
+- Dynamic File Selection
+- Playwright Assertions
 
 ---
 
 # 🎯 Playwright Concepts Used
 
-- Page Object Model
-- Locators
+- page.waitForEvent("download")
+- download.saveAs()
+- download.suggestedFilename()
+- path.resolve()
 - Assertions
-- Async / Await
-- JSON Test Data
-- Browser Context
-- Playwright Test Runner
+- Page Object Model
+- BasePage Reusability
+
+---
+
+# 🔄 BasePage Methods Used
+
+| Method | Purpose |
+|---------|---------|
+| navigate() | Navigate to application |
+| click() | Click download link |
+| downloadFile() | Download and save file |
+| getLocator() | Locate web elements |
 
 ---
 
 # ✔ Assertions Used
 
-- Verify URL
-- Verify Products Page Title
+```javascript
+expect(actualFileName).toBe(expectedFileName);
+```
 
 ---
 
-# ▶️ Test Execution
+# ▶ Test Execution
 
-Run all tests
+Run complete suite
 
 ```bash
 npx playwright test
 ```
 
-Run only Task-01
+Run Task-15
 
 ```bash
-npx playwright test tests/login/validLogin.spec.js --headed
-```
-
-Run on Chromium
-
-```bash
-npx playwright test tests/login/validLogin.spec.js --project=chromium
+npx playwright test tests/download/verifyFileDownload.spec.js --headed
 ```
 
 Generate HTML Report
@@ -198,97 +232,114 @@ npx playwright show-report
 
 # 🌍 Browser Support
 
-- ✅ Chromium
-- ✅ Firefox
-- ✅ WebKit
+- Chromium
+- Firefox
+- WebKit
 
 ---
 
 # 📊 Test Execution Status
 
-| Execution Date | Browser | Result |
-|---------------|----------|--------|
-| DD-MM-YYYY | Chromium | ✅ Passed |
+| Browser | Result |
+|----------|--------|
+| Chromium | ✅ Passed |
 
 ---
 
-# 📷 Execution Evidence
+# 📷 Test Execution Evidence
 
-## Login Page
+## Download Page
 
-> Screenshot Path
 
-```text
-docs/task-01/login-page.png
+![Download Page](docs/task-13/01-download-page.png)
+
+
+## Download Completed
+
+
+![Download Completed](docs/task-13/02-download-success.png)
+
+
+## Playwright HTML Report
+
+
+![Playwright HTML Report](docs/task-13/03-playwright-report.png)
+
+
+---
+
+# 🌿 Git Branch
+
 ```
-
----
-
-## Successful Login
-
-> Screenshot Path
-
-```text
-docs/task-01/inventory-page.png
-```
-
----
-
-# 📈 Playwright HTML Report
-
-> Report Screenshot
-
-```text
-docs/task-01/playwright-report.png
-```
-
----
-
-# 🌿 Git Branch Information
-
-| Branch |
-|---------|
-| feature/task-01-valid-login |
-
-Commit Message
-
-```text
-Task-01: Implement valid login scenario using Playwright JavaScript
+feature/task-15-file-download
 ```
 
 ---
 
 # ⚠ Challenges Faced
 
-- Understanding Playwright project structure.
-- Implementing the Page Object Model.
-- Managing external JSON test data.
-- Learning Playwright assertions.
+- Handling Playwright download events.
+- Downloading files dynamically.
+- Saving downloaded files to a local directory.
+- Avoiding strict mode locator violations.
+- Understanding JavaScript return statement behavior.
+
+---
+
+# ✅ Solution Implemented
+
+- Used page.waitForEvent("download") before clicking the download link.
+- Downloaded the first available file dynamically.
+- Saved the downloaded file using download.saveAs().
+- Retrieved the downloaded filename using download.suggestedFilename().
+- Compared expected and actual filenames using Playwright assertions.
 
 ---
 
 # 📚 Learning Outcome
 
-- Learned Playwright project setup.
-- Implemented Page Object Model.
-- Used reusable page methods.
-- Performed UI validations using assertions.
-- Executed Playwright tests from terminal.
-- Generated Playwright HTML reports.
-- Managed code using Git feature branches.
+- Learned Playwright File Download handling.
+- Understood download event synchronization.
+- Learned dynamic file selection.
+- Learned how download.saveAs() works.
+- Learned how download.suggestedFilename() retrieves the original filename.
+- Improved BasePage reusability with a download method.
+
+---
+
+# 💡 Best Practices Followed
+
+- Page Object Model
+- BasePage Reusability
+- Dynamic Locator Handling
+- Clean Code
+- Feature Branch Workflow
+- Reusable Utility Methods
+
+---
+
+# 📈 Framework Metrics
+
+| Metric | Value |
+|--------|-------|
+| Test Cases | 1 |
+| Assertions | 1 |
+| New BasePage Methods | 1 |
+| Download Scenarios | 1 |
+| JSON Files | 1 |
 
 ---
 
 # 🚀 Future Enhancements
 
-- Data Driven Testing
-- Environment Configuration
-- Cross Browser Execution
-- Parallel Test Execution
-- Allure Reporting
-- CI/CD using GitHub Actions
-- Docker Integration
-- API Testing using Playwright
+- Multiple File Download
+- Download Verification using File System
+- File Size Validation
+- File Type Validation
+- Screenshot on Failure
+- Allure Report
+- GitHub Actions
+- Jenkins Integration
 
 ---
 
@@ -298,14 +349,8 @@ Task-01: Implement valid login scenario using Playwright JavaScript
 
 QA Automation Engineer
 
-GitHub Profile:
-https://github.com/Sohel9147
-
-Repository:
-https://github.com/Sohel9147/playwright-javascript-automation-framework
-
 ---
 
 # 📄 License
 
-This project is created for learning, practice, and portfolio purposes.
+This project is created for learning and portfolio purposes.
