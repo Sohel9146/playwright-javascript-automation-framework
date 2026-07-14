@@ -18,9 +18,9 @@ export class FileDownloadPage extends BasePage
         await this.navigate(FILE_DOWNLOAD_URL)
     }
 
-    async downloadFirstFile()
+    async downloadFile()
     {
-            const fileName = await this.getLocator(this.DownloadLink).first().textContent()
+            const fileName = await this.getLocator(this.DownloadLink).textContent()
 
             const savePath = path.resolve("downloads", fileName)
 

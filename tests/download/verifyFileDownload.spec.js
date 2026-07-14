@@ -12,7 +12,7 @@ test.describe("Task-15 : Verify File Download", ()=>
 
             await downloadpage.gotoFileDownloadPage()
 
-            const file = await downloadpage.downloadFirstFile()
+            const file = await downloadpage.downloadFile()
 
             await downloadpage.verifyDownloadedFile(file.expectedFileName, file.downloadedFileName)
 

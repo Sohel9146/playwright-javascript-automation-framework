@@ -22,3 +22,5 @@ export const FILE_UPLOAD_URL        = "https://the-internet.herokuapp.com/upload
 
 export const FILE_DOWNLOAD_URL      = "https://the-internet.herokuapp.com/download"
 
+export const NEW_WINDOW_URL         = "https://the-internet.herokuapp.com/windows"
+

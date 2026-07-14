@@ -139,5 +139,19 @@ export class BasePage
                 return download;
         }
 
+        // Handle New Tab
+        async openNewTab(locator)
+        {
+            const pagePromise   =   this.page.context().waitForEvent("page")
+
+            await this.click(locator)
+
+            const newPage    =   await pagePromise
+
+            await newPage.waitForLoadState()
+
+            return newPage
+        }
+
 
 }
