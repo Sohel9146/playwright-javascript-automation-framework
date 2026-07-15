@@ -153,5 +153,12 @@ export class BasePage
             return newPage
         }
 
+        // Get Frame
+
+        async getFrame(frameLocator)
+        {
+                return this.page.frameLocator(frameLocator)
+        }
+
 
 }

@@ -24,3 +24,4 @@ export const FILE_DOWNLOAD_URL      = "https://the-internet.herokuapp.com/downlo
 
 export const NEW_WINDOW_URL         = "https://the-internet.herokuapp.com/windows"
 
+export const IFRAME_URL             = "https://www.tiny.cloud/docs/tinymce/latest/basic-example/"
