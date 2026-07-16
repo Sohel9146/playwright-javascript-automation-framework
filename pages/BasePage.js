@@ -160,5 +160,10 @@ export class BasePage
                 return this.page.frameLocator(frameLocator)
         }
 
+        //Hover
+        async hover(locator)
+        {
+            await this.page.locator(locator).hover()
+        }
 
 }
