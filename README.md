@@ -1,52 +1,28 @@
-# 🚀 Task-01: Valid Login Scenario | Playwright JavaScript Automation
+# 🚀 Task-16: Mouse Hover Using Playwright
 
 ## 📖 Project Overview
 
-This task automates the **Valid Login** functionality of the SauceDemo web application using **Playwright with JavaScript**.
+This task demonstrates how to automate **Mouse Hover** functionality using **Playwright with JavaScript**.
 
-The objective is to verify that a registered user can successfully log in with valid credentials and is redirected to the Inventory page.
+The automation performs a hover action on a user image and verifies that hidden profile information becomes visible after hovering.
 
-This implementation follows industry-standard automation practices including:
-- Page Object Model (POM)
-- External Test Data (JSON)
-- Reusable Page Objects
-- Clean Project Structure
-- Playwright Assertions
-
----
-
-# 📋 Test Case Information
-
-| Field | Details |
-|-------|---------|
-| **Test Case ID** | TC_LOGIN_001 |
-| **Module** | Authentication |
-| **Feature** | Login |
-| **Scenario** | Valid Login |
-| **Test Type** | Functional Testing |
-| **Execution Type** | Automated |
-| **Priority** | High |
-| **Severity** | Critical |
-| **Automation Tool** | Playwright |
-| **Programming Language** | JavaScript |
-| **Framework Pattern** | Page Object Model (POM) |
-| **Execution Status** | ✅ Passed |
+The framework follows the **Page Object Model (POM)** design pattern with reusable methods implemented in the BasePage class.
 
 ---
 
 # 🎯 Objective
 
-To verify that a registered user can successfully log in to the SauceDemo application using valid credentials.
+Verify that hidden profile details are displayed when the mouse hovers over the first user image.
 
 ---
 
 # 🌐 Application Under Test
 
-| Application | Value |
-|------------|-------|
-| Application Name | SauceDemo |
-| URL | https://www.saucedemo.com |
-| Environment | Demo |
+| Property | Value |
+|----------|-------|
+| Website | The Internet |
+| URL | https://the-internet.herokuapp.com/hovers |
+| Module | Mouse Hover |
 
 ---
 
@@ -54,12 +30,23 @@ To verify that a registered user can successfully log in to the SauceDemo applic
 
 | Technology | Version |
 |------------|----------|
-| Node.js | Latest |
-| Playwright | Latest |
+| Node.js | v22.11.0 |
+| Playwright | v1.61.1 |
 | JavaScript | ES6 |
 | VS Code | IDE |
 | Git | Version Control |
 | GitHub | Repository Hosting |
+
+---
+
+# 🏗 Framework Design
+
+- Page Object Model (POM)
+- BasePage Reusable Methods
+- JSON Test Data
+- Constants File
+- Playwright Assertions
+- ES Modules (Import / Export)
 
 ---
 
@@ -68,124 +55,117 @@ To verify that a registered user can successfully log in to the SauceDemo applic
 ```text
 playwright-practice-js
 │
-├── pages
-│   └── LoginPage.js
+├── docs
+│   └── task-16
+│       ├── README.md
+│       └── screenshots
 │
-├── tests
-│   └── login
-│       └── validLogin.spec.js
+├── pages
+│   └── HoverPage.js
 │
 ├── testData
-│   └── loginData.json
+│   └── hoverData.json
+│
+├── tests
+│   └── hover
+│       └── verifyHover.spec.js
 │
 ├── utils
+│   └── constants.js
 │
-├── playwright.config.js
-│
-├── package.json
-│
-└── README.md
+└── package.json
 ```
+
+---
+
+# 📋 Test Case Information
+
+| Field | Details |
+|-------|---------|
+| Task | Task-16 |
+| Module | Mouse Hover |
+| Scenario | Verify profile information after mouse hover |
+| Test Type | Functional Testing |
+| Automation Tool | Playwright |
+| Execution Status | ✅ Passed |
 
 ---
 
 # 📌 Preconditions
 
-- Node.js is installed.
-- Playwright is installed.
-- Browser dependencies are installed.
-- User has internet connectivity.
-- SauceDemo website is accessible.
-- Valid login credentials are available.
-
----
-
-# 🧪 Test Data
-
-| Username | Password |
-|----------|----------|
-| standard_user | secret_sauce |
+- Node.js installed
+- Playwright installed
+- Internet connection available
 
 ---
 
 # 📝 Test Steps
 
-| Step | Action | Expected Result |
-|------|--------|----------------|
-| 1 | Launch SauceDemo application | Login page should open |
-| 2 | Enter valid username | Username should be entered successfully |
-| 3 | Enter valid password | Password should be entered successfully |
-| 4 | Click Login button | User should be authenticated |
-| 5 | Verify Inventory page | Products page should be displayed |
+1. Launch the browser.
+2. Navigate to the Hovers page.
+3. Hover over the first user image.
+4. Verify the user name becomes visible.
+5. Verify the **View profile** link is displayed.
 
 ---
 
 # ✅ Expected Result
 
-- Login should be successful.
-- Inventory page should be displayed.
-- URL should contain **inventory.html**.
-- Products title should be visible.
+- Hover action should be performed successfully.
+- User profile information should appear.
+- "View profile" link should be visible.
 
 ---
 
 # 📌 Postconditions
 
-- User is logged in successfully.
-- Inventory page is displayed.
-- Application is ready for the next user actions such as Add to Cart or Checkout.
+- Profile details verified.
+- Browser closed.
 
 ---
 
-# ⚙ Automation Approach
+# 🔄 BasePage Methods Used
 
-This scenario is automated using:
-
-- Page Object Model (POM)
-- External JSON Test Data
-- Reusable Methods
-- Playwright Built-in Assertions
-- Async/Await Programming
+| Method | Purpose |
+|---------|---------|
+| navigate() | Open application URL |
+| hover() | Perform mouse hover |
+| getLocator() | Return Playwright locator |
 
 ---
 
 # 🎯 Playwright Concepts Used
 
-- Page Object Model
-- Locators
-- Assertions
-- Async / Await
-- JSON Test Data
-- Browser Context
-- Playwright Test Runner
+- hover()
+- locator()
+- expect()
+- toBeVisible()
+- toHaveText()
 
 ---
 
-# ✔ Assertions Used
+# ✔ Assertion Used
 
-- Verify URL
-- Verify Products Page Title
+```javascript
+await expect(locator).toHaveText(expectedUser);
+
+await expect(locator).toBeVisible();
+```
 
 ---
 
-# ▶️ Test Execution
+# ▶ Test Execution
 
-Run all tests
+Run complete suite
 
 ```bash
 npx playwright test
 ```
 
-Run only Task-01
+Run Task-16 only
 
 ```bash
-npx playwright test tests/login/validLogin.spec.js --headed
-```
-
-Run on Chromium
-
-```bash
-npx playwright test tests/login/validLogin.spec.js --project=chromium
+npx playwright test tests/hover/verifyHover.spec.js --headed
 ```
 
 Generate HTML Report
@@ -196,99 +176,103 @@ npx playwright show-report
 
 ---
 
-# 🌍 Browser Support
-
-- ✅ Chromium
-- ✅ Firefox
-- ✅ WebKit
-
----
-
-# 📊 Test Execution Status
-
-| Execution Date | Browser | Result |
-|---------------|----------|--------|
-| DD-MM-YYYY | Chromium | ✅ Passed |
-
----
-
 # 📷 Execution Evidence
 
-## Login Page
+## Home Page
 
-> Screenshot Path
+The application home page before performing the hover action.
 
-```text
-docs/task-01/login-page.png
-```
+![Home Page](docs/task-16/01-home-page.png)
 
 ---
 
-## Successful Login
+## Mouse Hover Action
 
-> Screenshot Path
+Mouse hovered over the first user image and the hidden profile information is displayed successfully.
 
-```text
-docs/task-01/inventory-page.png
-```
+![Mouse Hover](docs/task-16/02-hover-action.png)
 
 ---
 
-# 📈 Playwright HTML Report
+## Verification Result
 
-> Report Screenshot
+User name and **View Profile** link displayed after hover.
 
-```text
-docs/task-01/playwright-report.png
-```
+![Verification](docs/task-16/03-verification.png)
 
 ---
 
-# 🌿 Git Branch Information
+## Playwright HTML Report
 
-| Branch |
-|---------|
-| feature/task-01-valid-login |
+Successful execution shown in the Playwright HTML Report.
 
-Commit Message
+![Playwright Report](docs/task-16/04-playwright-report.png)
 
-```text
-Task-01: Implement valid login scenario using Playwright JavaScript
-```
+---
+
+# 🌿 Git Branch
+
+feature/task-16-mouse-hover
 
 ---
 
 # ⚠ Challenges Faced
 
-- Understanding Playwright project structure.
-- Implementing the Page Object Model.
-- Managing external JSON test data.
-- Learning Playwright assertions.
+- Selecting stable hover demo website.
+- Locating hidden elements.
+- Performing hover action before verification.
+
+---
+
+# ✅ Solution
+
+- Used Playwright's hover() method.
+- Added reusable hover() method in BasePage.
+- Verified profile information using Playwright assertions.
 
 ---
 
 # 📚 Learning Outcome
 
-- Learned Playwright project setup.
-- Implemented Page Object Model.
-- Used reusable page methods.
-- Performed UI validations using assertions.
-- Executed Playwright tests from terminal.
-- Generated Playwright HTML reports.
-- Managed code using Git feature branches.
+- Learned Mouse Hover automation.
+- Worked with hidden UI elements.
+- Improved BasePage reusability.
+- Strengthened Page Object Model implementation.
+
+---
+
+# 📈 Framework Enhancement
+
+## New Reusable Method
+
+```javascript
+async hover(locator)
+{
+    await this.page.locator(locator).hover();
+}
+```
+
+### Benefit
+
+This method can now be reused for:
+
+- Navigation Menus
+- Mega Menus
+- User Profile Dropdowns
+- Product Cards
+- Tooltips
+- Hidden Controls
 
 ---
 
 # 🚀 Future Enhancements
 
-- Data Driven Testing
-- Environment Configuration
-- Cross Browser Execution
-- Parallel Test Execution
+- Screenshot on failure
+- Retry mechanism
+- Cross-browser execution
+- Jenkins CI/CD
+- GitHub Actions
 - Allure Reporting
-- CI/CD using GitHub Actions
-- Docker Integration
-- API Testing using Playwright
 
 ---
 
@@ -298,14 +282,8 @@ Task-01: Implement valid login scenario using Playwright JavaScript
 
 QA Automation Engineer
 
-GitHub Profile:
-https://github.com/Sohel9147
-
-Repository:
-https://github.com/Sohel9147/playwright-javascript-automation-framework
-
 ---
 
 # 📄 License
 
-This project is created for learning, practice, and portfolio purposes.
+This project is created for learning and portfolio purposes.
