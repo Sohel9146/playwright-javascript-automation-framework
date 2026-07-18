@@ -26,4 +26,6 @@ export const NEW_WINDOW_URL         = "https://the-internet.herokuapp.com/window
 
 export const IFRAME_URL             = "https://www.tiny.cloud/docs/tinymce/latest/basic-example/"
 
-export const HOVER_URL               = "https://the-internet.herokuapp.com/hovers"
+export const HOVER_URL              = "https://the-internet.herokuapp.com/hovers"
+
+export const DRAG_DROP_URL          = "https://jqueryui.com/droppable/"

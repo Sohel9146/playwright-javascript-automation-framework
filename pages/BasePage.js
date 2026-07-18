@@ -166,4 +166,13 @@ export class BasePage
             await this.page.locator(locator).hover()
         }
 
+        // Drag and Drop
+        async dragAndDrop(sourceLocator,targetLocator)
+        {
+            await this.page.locator(sourceLocator).dragTo(this.page.locator(targetLocator))
+        }
+
+       
+
+       
 }
