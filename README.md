@@ -1,51 +1,30 @@
-# 🚀 Task-01: Valid Login Scenario | Playwright JavaScript Automation
-
-## 📖 Project Overview
-
-This task automates the **Valid Login** functionality of the SauceDemo web application using **Playwright with JavaScript**.
-
-The objective is to verify that a registered user can successfully log in with valid credentials and is redirected to the Inventory page.
-
-This implementation follows industry-standard automation practices including:
-- Page Object Model (POM)
-- External Test Data (JSON)
-- Reusable Page Objects
-- Clean Project Structure
-- Playwright Assertions
+# 🚀 Task-17: Drag and Drop Using Playwright
 
 ---
 
-# 📋 Test Case Information
+# 📖 Project Overview
 
-| Field | Details |
-|-------|---------|
-| **Test Case ID** | TC_LOGIN_001 |
-| **Module** | Authentication |
-| **Feature** | Login |
-| **Scenario** | Valid Login |
-| **Test Type** | Functional Testing |
-| **Execution Type** | Automated |
-| **Priority** | High |
-| **Severity** | Critical |
-| **Automation Tool** | Playwright |
-| **Programming Language** | JavaScript |
-| **Framework Pattern** | Page Object Model (POM) |
-| **Execution Status** | ✅ Passed |
+This task demonstrates how to automate **Drag and Drop** functionality using **Playwright with JavaScript**.
+
+The automation performs a drag-and-drop operation on a draggable element and verifies that the element is successfully dropped onto the target area.
+
+This implementation follows the **Page Object Model (POM)** design pattern with reusable methods from the **BasePage** class.
 
 ---
 
 # 🎯 Objective
 
-To verify that a registered user can successfully log in to the SauceDemo application using valid credentials.
+Verify that a draggable element can be successfully dragged and dropped onto the target element.
 
 ---
 
 # 🌐 Application Under Test
 
-| Application | Value |
-|------------|-------|
-| Application Name | SauceDemo |
-| URL | https://www.saucedemo.com |
+| Property | Value |
+|----------|-------|
+| Website | jQuery UI |
+| URL | https://jqueryui.com/droppable/ |
+| Module | Drag and Drop |
 | Environment | Demo |
 
 ---
@@ -54,12 +33,37 @@ To verify that a registered user can successfully log in to the SauceDemo applic
 
 | Technology | Version |
 |------------|----------|
-| Node.js | Latest |
-| Playwright | Latest |
+| Node.js | v22.11.0 |
+| Playwright | v1.61.1 |
 | JavaScript | ES6 |
 | VS Code | IDE |
 | Git | Version Control |
 | GitHub | Repository Hosting |
+
+---
+
+# 🏗 Framework Design
+
+- Page Object Model (POM)
+- BasePage Reusable Methods
+- JSON Test Data
+- Constants File
+- Playwright Assertions
+- ES Modules (Import / Export)
+
+---
+
+# 📋 Test Case Information
+
+| Field | Details |
+|-------|---------|
+| Task | Task-17 |
+| Module | Drag and Drop |
+| Scenario | Verify Drag and Drop |
+| Test Type | Functional Testing |
+| Execution Type | Automated |
+| Priority | High |
+| Execution Status | ✅ Passed |
 
 ---
 
@@ -68,124 +72,116 @@ To verify that a registered user can successfully log in to the SauceDemo applic
 ```text
 playwright-practice-js
 │
-├── pages
-│   └── LoginPage.js
+├── docs
+│   └── task-17
+│       ├── README.md
+│       └── screenshots
 │
-├── tests
-│   └── login
-│       └── validLogin.spec.js
+├── pages
+│   └── DragAndDropPage.js
 │
 ├── testData
-│   └── loginData.json
+│   └── dragAndDropData.json
+│
+├── tests
+│   └── dragAndDrop
+│       └── verifyDragAndDrop.spec.js
 │
 ├── utils
+│   └── constants.js
 │
-├── playwright.config.js
-│
-├── package.json
-│
-└── README.md
+└── package.json
+```
+
+---
+
+# 📌 Test Data
+
+### dragAndDropData.json
+
+```json
+{
+    "expectedMessage": "Dropped!"
+}
 ```
 
 ---
 
 # 📌 Preconditions
 
-- Node.js is installed.
-- Playwright is installed.
-- Browser dependencies are installed.
-- User has internet connectivity.
-- SauceDemo website is accessible.
-- Valid login credentials are available.
-
----
-
-# 🧪 Test Data
-
-| Username | Password |
-|----------|----------|
-| standard_user | secret_sauce |
+- Node.js installed
+- Playwright installed
+- Internet connection available
 
 ---
 
 # 📝 Test Steps
 
-| Step | Action | Expected Result |
-|------|--------|----------------|
-| 1 | Launch SauceDemo application | Login page should open |
-| 2 | Enter valid username | Username should be entered successfully |
-| 3 | Enter valid password | Password should be entered successfully |
-| 4 | Click Login button | User should be authenticated |
-| 5 | Verify Inventory page | Products page should be displayed |
+1. Launch browser.
+2. Navigate to jQuery UI Droppable page.
+3. Switch to the demo iframe.
+4. Drag the source element.
+5. Drop it onto the target.
+6. Verify the target displays **Dropped!**
 
 ---
 
 # ✅ Expected Result
 
-- Login should be successful.
-- Inventory page should be displayed.
-- URL should contain **inventory.html**.
-- Products title should be visible.
+- Drag operation should be successful.
+- Target element should display **Dropped!**
 
 ---
 
 # 📌 Postconditions
 
-- User is logged in successfully.
-- Inventory page is displayed.
-- Application is ready for the next user actions such as Add to Cart or Checkout.
+- Drag and Drop completed successfully.
+- Browser closed.
 
 ---
 
-# ⚙ Automation Approach
+# 🔄 BasePage Methods Used
 
-This scenario is automated using:
-
-- Page Object Model (POM)
-- External JSON Test Data
-- Reusable Methods
-- Playwright Built-in Assertions
-- Async/Await Programming
+| Method | Purpose |
+|---------|---------|
+| navigate() | Open application |
+| getFrame() | Access iframe |
+| dragAndDrop() | Perform drag-and-drop |
+| getLocator() | Return locator |
 
 ---
 
 # 🎯 Playwright Concepts Used
 
-- Page Object Model
-- Locators
-- Assertions
-- Async / Await
-- JSON Test Data
-- Browser Context
-- Playwright Test Runner
+- frameLocator()
+- dragTo()
+- locator()
+- expect()
+- toHaveText()
 
 ---
 
-# ✔ Assertions Used
+# ✔ Assertion Used
 
-- Verify URL
-- Verify Products Page Title
+```javascript
+await expect(frame.locator(this.target))
+    .toContainText(expectedMessage);
+```
 
 ---
 
-# ▶️ Test Execution
+# ▶ Test Execution
 
-Run all tests
+Run complete suite
 
 ```bash
 npx playwright test
 ```
 
-Run only Task-01
+Run Task-17
 
 ```bash
-npx playwright test tests/login/validLogin.spec.js --headed
-```
-
-Run on Chromium
-
-```bash
-npx playwright test tests/login/validLogin.spec.js --project=chromium
+npx playwright test tests/dragAndDrop/verifyDragAndDrop.spec.js --headed
 ```
 
 Generate HTML Report
@@ -196,99 +192,107 @@ npx playwright show-report
 
 ---
 
-# 🌍 Browser Support
+# 📸 Screenshots
 
-- ✅ Chromium
-- ✅ Firefox
-- ✅ WebKit
+## Home Page
 
----
+Application before performing drag and drop.
 
-# 📊 Test Execution Status
-
-| Execution Date | Browser | Result |
-|---------------|----------|--------|
-| DD-MM-YYYY | Chromium | ✅ Passed |
+![Home Page](docs/task-17/01-home-page.png)
 
 ---
 
-# 📷 Execution Evidence
+## Drag Operation
 
-## Login Page
+Dragging the source element.
 
-> Screenshot Path
+![Drag Element](docs/task-17/02-drag-operation.png)
 
-```text
-docs/task-01/login-page.png
+---
+
+## Drop Successful
+
+Target area displays **Dropped!**
+
+![Drop Successful](docs/task-17/03-drop-success.png)
+
+---
+
+## Playwright HTML Report
+
+Successful execution report.
+
+![Playwright Report](docs/task-17/04-playwright-report.png)
+
+---
+
+# 🌿 Git Branch
+
 ```
-
----
-
-## Successful Login
-
-> Screenshot Path
-
-```text
-docs/task-01/inventory-page.png
-```
-
----
-
-# 📈 Playwright HTML Report
-
-> Report Screenshot
-
-```text
-docs/task-01/playwright-report.png
-```
-
----
-
-# 🌿 Git Branch Information
-
-| Branch |
-|---------|
-| feature/task-01-valid-login |
-
-Commit Message
-
-```text
-Task-01: Implement valid login scenario using Playwright JavaScript
+feature/task-17-drag-and-drop
 ```
 
 ---
 
 # ⚠ Challenges Faced
 
-- Understanding Playwright project structure.
-- Implementing the Page Object Model.
-- Managing external JSON test data.
-- Learning Playwright assertions.
+- Working with elements inside an iframe.
+- Understanding `frameLocator()`.
+- Using `dragTo()` correctly within the same iframe.
+- Selecting stable demo websites.
+
+---
+
+# ✅ Solution Implemented
+
+- Used `frameLocator()` to access iframe elements.
+- Performed drag-and-drop using Playwright's `dragTo()` method.
+- Verified successful drop with Playwright assertions.
+- Created reusable framework methods.
 
 ---
 
 # 📚 Learning Outcome
 
-- Learned Playwright project setup.
-- Implemented Page Object Model.
-- Used reusable page methods.
-- Performed UI validations using assertions.
-- Executed Playwright tests from terminal.
-- Generated Playwright HTML reports.
-- Managed code using Git feature branches.
+- Learned Drag and Drop automation.
+- Worked with iframe elements.
+- Understood reusable drag-and-drop methods.
+- Improved Page Object Model implementation.
+
+---
+
+# 📈 Framework Enhancement
+
+## New Reusable Method
+
+```javascript
+async dragAndDrop(sourceLocator, targetLocator)
+{
+    await this.page
+        .locator(sourceLocator)
+        .dragTo(this.page.locator(targetLocator));
+}
+```
+
+### Benefits
+
+Reusable for:
+
+- Kanban Boards
+- Trello Applications
+- Dashboard Widgets
+- Scheduling Applications
+- Shopping Cart Interactions
 
 ---
 
 # 🚀 Future Enhancements
 
-- Data Driven Testing
-- Environment Configuration
-- Cross Browser Execution
-- Parallel Test Execution
+- Cross-browser execution
+- Screenshot on failure
 - Allure Reporting
-- CI/CD using GitHub Actions
-- Docker Integration
-- API Testing using Playwright
+- GitHub Actions
+- Jenkins CI/CD
 
 ---
 
@@ -298,14 +302,8 @@ Task-01: Implement valid login scenario using Playwright JavaScript
 
 QA Automation Engineer
 
-GitHub Profile:
-https://github.com/Sohel9147
-
-Repository:
-https://github.com/Sohel9147/playwright-javascript-automation-framework
-
 ---
 
 # 📄 License
 
-This project is created for learning, practice, and portfolio purposes.
+This project is created for learning and portfolio purposes.
