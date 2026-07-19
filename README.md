@@ -1,51 +1,30 @@
-# 🚀 Task-01: Valid Login Scenario | Playwright JavaScript Automation
-
-## 📖 Project Overview
-
-This task automates the **Valid Login** functionality of the SauceDemo web application using **Playwright with JavaScript**.
-
-The objective is to verify that a registered user can successfully log in with valid credentials and is redirected to the Inventory page.
-
-This implementation follows industry-standard automation practices including:
-- Page Object Model (POM)
-- External Test Data (JSON)
-- Reusable Page Objects
-- Clean Project Structure
-- Playwright Assertions
+# 🚀 Task-18: Handle Slider Using Playwright
 
 ---
 
-# 📋 Test Case Information
+# 📖 Project Overview
 
-| Field | Details |
-|-------|---------|
-| **Test Case ID** | TC_LOGIN_001 |
-| **Module** | Authentication |
-| **Feature** | Login |
-| **Scenario** | Valid Login |
-| **Test Type** | Functional Testing |
-| **Execution Type** | Automated |
-| **Priority** | High |
-| **Severity** | Critical |
-| **Automation Tool** | Playwright |
-| **Programming Language** | JavaScript |
-| **Framework Pattern** | Page Object Model (POM) |
-| **Execution Status** | ✅ Passed |
+This task demonstrates how to automate a Slider component using **Playwright with JavaScript**.
+
+The automation script navigates to the DemoQA Slider page, changes the slider value, and verifies that the expected value is displayed.
+
+The framework follows the **Page Object Model (POM)** design pattern with reusable methods from the **BasePage** class.
 
 ---
 
 # 🎯 Objective
 
-To verify that a registered user can successfully log in to the SauceDemo application using valid credentials.
+Verify that the slider value changes successfully after interacting with the slider.
 
 ---
 
 # 🌐 Application Under Test
 
-| Application | Value |
-|------------|-------|
-| Application Name | SauceDemo |
-| URL | https://www.saucedemo.com |
+| Property | Value |
+|----------|-------|
+| Website | DemoQA |
+| URL | https://demoqa.com/slider |
+| Module | Slider |
 | Environment | Demo |
 
 ---
@@ -54,12 +33,37 @@ To verify that a registered user can successfully log in to the SauceDemo applic
 
 | Technology | Version |
 |------------|----------|
-| Node.js | Latest |
-| Playwright | Latest |
-| JavaScript | ES6 |
+| Node.js | v22.11.0 |
+| Playwright | v1.61.1 |
+| JavaScript (ES6 Modules) | Latest |
 | VS Code | IDE |
 | Git | Version Control |
 | GitHub | Repository Hosting |
+
+---
+
+# 🏗 Framework Design
+
+- Page Object Model (POM)
+- BasePage Reusable Methods
+- JSON Test Data
+- Constants File
+- Playwright Assertions
+- ES Modules
+
+---
+
+# 📋 Test Case Information
+
+| Field | Details |
+|-------|---------|
+| Task | Task-18 |
+| Module | Slider |
+| Scenario | Verify Slider Value |
+| Test Type | Functional Testing |
+| Execution Type | Automated |
+| Priority | High |
+| Execution Status | ✅ Passed |
 
 ---
 
@@ -68,107 +72,103 @@ To verify that a registered user can successfully log in to the SauceDemo applic
 ```text
 playwright-practice-js
 │
-├── pages
-│   └── LoginPage.js
+├── docs
+│   └── task-18
+│       ├── README.md
+│       └── screenshots
 │
-├── tests
-│   └── login
-│       └── validLogin.spec.js
+├── pages
+│   └── SliderPage.js
 │
 ├── testData
-│   └── loginData.json
+│   └── sliderData.json
+│
+├── tests
+│   └── slider
+│       └── verifySlider.spec.js
 │
 ├── utils
+│   └── constants.js
 │
-├── playwright.config.js
-│
-├── package.json
-│
-└── README.md
+└── package.json
+```
+
+---
+
+# 📌 Test Data
+
+### sliderData.json
+
+```json
+{
+    "expectedValue": "75"
+}
 ```
 
 ---
 
 # 📌 Preconditions
 
-- Node.js is installed.
-- Playwright is installed.
-- Browser dependencies are installed.
-- User has internet connectivity.
-- SauceDemo website is accessible.
-- Valid login credentials are available.
-
----
-
-# 🧪 Test Data
-
-| Username | Password |
-|----------|----------|
-| standard_user | secret_sauce |
+- Node.js installed
+- Playwright installed
+- Internet connection available
 
 ---
 
 # 📝 Test Steps
 
-| Step | Action | Expected Result |
-|------|--------|----------------|
-| 1 | Launch SauceDemo application | Login page should open |
-| 2 | Enter valid username | Username should be entered successfully |
-| 3 | Enter valid password | Password should be entered successfully |
-| 4 | Click Login button | User should be authenticated |
-| 5 | Verify Inventory page | Products page should be displayed |
+1. Launch browser.
+2. Navigate to the DemoQA Slider page.
+3. Move the slider to the desired value.
+4. Read the slider value.
+5. Verify the displayed value.
 
 ---
 
 # ✅ Expected Result
 
-- Login should be successful.
-- Inventory page should be displayed.
-- URL should contain **inventory.html**.
-- Products title should be visible.
+- Slider should move successfully.
+- Slider value should match the expected value.
 
 ---
 
 # 📌 Postconditions
 
-- User is logged in successfully.
-- Inventory page is displayed.
-- Application is ready for the next user actions such as Add to Cart or Checkout.
+- Slider value verified successfully.
+- Browser closed.
 
 ---
 
-# ⚙ Automation Approach
+# 🔄 BasePage Methods Used
 
-This scenario is automated using:
-
-- Page Object Model (POM)
-- External JSON Test Data
-- Reusable Methods
-- Playwright Built-in Assertions
-- Async/Await Programming
+| Method | Purpose |
+|---------|---------|
+| navigate() | Navigate to application |
+| getLocator() | Return locator |
+| getInputValue() | Read input value |
 
 ---
 
 # 🎯 Playwright Concepts Used
 
-- Page Object Model
-- Locators
-- Assertions
-- Async / Await
-- JSON Test Data
-- Browser Context
-- Playwright Test Runner
+- locator()
+- fill() / Keyboard Interaction
+- inputValue()
+- expect()
+- toHaveValue()
 
 ---
 
-# ✔ Assertions Used
+# ✔ Assertion Used
 
-- Verify URL
-- Verify Products Page Title
+```javascript
+await expect(this.getLocator(this.sliderValue))
+    .toHaveValue(expectedValue);
+```
 
 ---
 
-# ▶️ Test Execution
+# ▶ Test Execution
 
 Run all tests
 
@@ -176,16 +176,10 @@ Run all tests
 npx playwright test
 ```
 
-Run only Task-01
+Run only Slider Test
 
 ```bash
-npx playwright test tests/login/validLogin.spec.js --headed
-```
-
-Run on Chromium
-
-```bash
-npx playwright test tests/login/validLogin.spec.js --project=chromium
+npx playwright test tests/slider/verifySlider.spec.js --headed
 ```
 
 Generate HTML Report
@@ -196,99 +190,98 @@ npx playwright show-report
 
 ---
 
-# 🌍 Browser Support
+# 📸 Screenshots
 
-- ✅ Chromium
-- ✅ Firefox
-- ✅ WebKit
+## Slider Page
 
----
-
-# 📊 Test Execution Status
-
-| Execution Date | Browser | Result |
-|---------------|----------|--------|
-| DD-MM-YYYY | Chromium | ✅ Passed |
+![Slider Page](docs/task-18/01-slider-page.png)
 
 ---
 
-# 📷 Execution Evidence
+## Slider Value Updated
 
-## Login Page
+![Slider Updated](docs/task-18/02-slider-value-updated.png)
 
-> Screenshot Path
+---
 
-```text
-docs/task-01/login-page.png
+## Successful Verification
+
+![Verification](docs/task-18/03-verification-success.png)
+
+---
+
+## Playwright HTML Report
+
+![HTML Report](docs/task-18/04-playwright-report.png)
+
+---
+
+# 🌿 Git Branch
+
 ```
-
----
-
-## Successful Login
-
-> Screenshot Path
-
-```text
-docs/task-01/inventory-page.png
-```
-
----
-
-# 📈 Playwright HTML Report
-
-> Report Screenshot
-
-```text
-docs/task-01/playwright-report.png
-```
-
----
-
-# 🌿 Git Branch Information
-
-| Branch |
-|---------|
-| feature/task-01-valid-login |
-
-Commit Message
-
-```text
-Task-01: Implement valid login scenario using Playwright JavaScript
+feature/task-18-slider
 ```
 
 ---
 
 # ⚠ Challenges Faced
 
-- Understanding Playwright project structure.
-- Implementing the Page Object Model.
-- Managing external JSON test data.
-- Learning Playwright assertions.
+- Understanding slider interaction.
+- Verifying dynamic input values.
+- Choosing the correct Playwright method for slider automation.
+
+---
+
+# ✅ Solution Implemented
+
+- Automated slider interaction.
+- Verified slider value using Playwright assertions.
+- Implemented reusable BasePage methods.
+- Maintained clean Page Object Model structure.
 
 ---
 
 # 📚 Learning Outcome
 
-- Learned Playwright project setup.
-- Implemented Page Object Model.
-- Used reusable page methods.
-- Performed UI validations using assertions.
-- Executed Playwright tests from terminal.
-- Generated Playwright HTML reports.
-- Managed code using Git feature branches.
+- Learned Slider automation.
+- Learned input value verification.
+- Improved reusable framework design.
+- Enhanced understanding of Playwright locators and assertions.
+
+---
+
+# 📈 Framework Enhancement
+
+## New Reusable Method
+
+```javascript
+async getInputValue(locator)
+{
+    return await this.page.locator(locator).inputValue();
+}
+```
+
+### Benefits
+
+Reusable for:
+
+- Slider components
+- Text Fields
+- Password Fields
+- Search Inputs
+- Form Validations
+- Hidden Inputs
 
 ---
 
 # 🚀 Future Enhancements
 
-- Data Driven Testing
-- Environment Configuration
-- Cross Browser Execution
-- Parallel Test Execution
+- Cross Browser Testing
+- Jenkins Integration
+- GitHub Actions
 - Allure Reporting
-- CI/CD using GitHub Actions
-- Docker Integration
-- API Testing using Playwright
+- Screenshot on Failure
+- Parallel Execution
 
 ---
 
@@ -298,14 +291,8 @@ Task-01: Implement valid login scenario using Playwright JavaScript
 
 QA Automation Engineer
 
-GitHub Profile:
-https://github.com/Sohel9147
-
-Repository:
-https://github.com/Sohel9147/playwright-javascript-automation-framework
-
 ---
 
 # 📄 License
 
-This project is created for learning, practice, and portfolio purposes.
+This project is created for learning and portfolio purposes.
