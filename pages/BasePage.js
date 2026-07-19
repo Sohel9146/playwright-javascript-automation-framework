@@ -172,6 +172,11 @@ export class BasePage
             await this.page.locator(sourceLocator).dragTo(this.page.locator(targetLocator))
         }
 
+        // Get Input Value
+        async getInputValue(locator)
+        {
+            return await this.page.locator(locator).inputValue()
+        }
        
 
        

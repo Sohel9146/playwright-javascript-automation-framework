@@ -29,3 +29,5 @@ export const IFRAME_URL             = "https://www.tiny.cloud/docs/tinymce/lates
 export const HOVER_URL              = "https://the-internet.herokuapp.com/hovers"
 
 export const DRAG_DROP_URL          = "https://jqueryui.com/droppable/"
+
+export const SLIDER_URL             = "https://demoqa.com/slider"
