@@ -177,6 +177,36 @@ export class BasePage
         {
             return await this.page.locator(locator).inputValue()
         }
+
+        // Clear Text
+        async clear(locator)
+        {
+            await this.page.locator(locator).clear()
+        }
+
+        // Press Keyboard Key
+        async press(locator, key)
+        {
+            await this.page.locator(locator).press(key)
+        }
+
+        // Get Text
+        async getText(locator)
+        {
+           return await this.page.locator(locator).textContent()
+        }
+
+        // Count Elements
+        async count(locator)
+        {
+            return await this.page.locator(locator).count()
+        }
+
+        // Verify Visibility
+        async isVisible(locator)
+        {
+            return await this.page.locator(locator).isVisible()
+        }
        
 
        

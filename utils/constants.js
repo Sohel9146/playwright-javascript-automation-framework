@@ -31,3 +31,5 @@ export const HOVER_URL              = "https://the-internet.herokuapp.com/hovers
 export const DRAG_DROP_URL          = "https://jqueryui.com/droppable/"
 
 export const SLIDER_URL             = "https://demoqa.com/slider"
+
+export const WEB_TABLE_URL          = "https://demoqa.com/webtables"
