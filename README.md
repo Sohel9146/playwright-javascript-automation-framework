@@ -1,51 +1,30 @@
-# 🚀 Task-01: Valid Login Scenario | Playwright JavaScript Automation
-
-## 📖 Project Overview
-
-This task automates the **Valid Login** functionality of the SauceDemo web application using **Playwright with JavaScript**.
-
-The objective is to verify that a registered user can successfully log in with valid credentials and is redirected to the Inventory page.
-
-This implementation follows industry-standard automation practices including:
-- Page Object Model (POM)
-- External Test Data (JSON)
-- Reusable Page Objects
-- Clean Project Structure
-- Playwright Assertions
+# 🚀 Task-19: Web Table CRUD Operations Using Playwright
 
 ---
 
-# 📋 Test Case Information
+# 📖 Project Overview
 
-| Field | Details |
-|-------|---------|
-| **Test Case ID** | TC_LOGIN_001 |
-| **Module** | Authentication |
-| **Feature** | Login |
-| **Scenario** | Valid Login |
-| **Test Type** | Functional Testing |
-| **Execution Type** | Automated |
-| **Priority** | High |
-| **Severity** | Critical |
-| **Automation Tool** | Playwright |
-| **Programming Language** | JavaScript |
-| **Framework Pattern** | Page Object Model (POM) |
-| **Execution Status** | ✅ Passed |
+This task demonstrates how to automate **Web Table CRUD (Create, Read, Update, Delete)** operations using **Playwright with JavaScript**.
+
+The automation script performs the complete employee lifecycle by adding a new record, searching for the record, updating employee information, deleting the employee, and verifying each operation.
+
+The project follows the **Page Object Model (POM)** design pattern with reusable methods implemented in the **BasePage** class.
 
 ---
 
 # 🎯 Objective
 
-To verify that a registered user can successfully log in to the SauceDemo application using valid credentials.
+Verify complete CRUD operations on a Web Table.
 
 ---
 
 # 🌐 Application Under Test
 
-| Application | Value |
-|------------|-------|
-| Application Name | SauceDemo |
-| URL | https://www.saucedemo.com |
+| Property | Value |
+|----------|-------|
+| Website | DemoQA |
+| URL | https://demoqa.com/webtables |
+| Module | Web Tables |
 | Environment | Demo |
 
 ---
@@ -54,12 +33,37 @@ To verify that a registered user can successfully log in to the SauceDemo applic
 
 | Technology | Version |
 |------------|----------|
-| Node.js | Latest |
-| Playwright | Latest |
-| JavaScript | ES6 |
+| Node.js | v22.11.0 |
+| Playwright | v1.61.1 |
+| JavaScript (ES6 Modules) | Latest |
 | VS Code | IDE |
 | Git | Version Control |
 | GitHub | Repository Hosting |
+
+---
+
+# 🏗 Framework Design
+
+- Page Object Model (POM)
+- BasePage Reusable Methods
+- JSON Test Data
+- Constants File
+- Playwright Assertions
+- ES Modules
+
+---
+
+# 📋 Test Case Information
+
+| Field | Details |
+|-------|---------|
+| Task | Task-19 |
+| Module | Web Tables |
+| Scenario | Verify CRUD Operations |
+| Test Type | Functional Testing |
+| Execution Type | Automated |
+| Priority | High |
+| Execution Status | ✅ Passed |
 
 ---
 
@@ -68,124 +72,134 @@ To verify that a registered user can successfully log in to the SauceDemo applic
 ```text
 playwright-practice-js
 │
-├── pages
-│   └── LoginPage.js
+├── docs
+│   └── task-19
+│       ├── README.md
+│       └── screenshots
 │
-├── tests
-│   └── login
-│       └── validLogin.spec.js
+├── pages
+│   └── WebTablePage.js
 │
 ├── testData
-│   └── loginData.json
+│   └── webTableData.json
+│
+├── tests
+│   └── webTables
+│       └── verifyWebTable.spec.js
 │
 ├── utils
+│   └── constants.js
 │
-├── playwright.config.js
-│
-├── package.json
-│
-└── README.md
+└── package.json
+```
+
+---
+
+# 📌 Test Data
+
+### webTableData.json
+
+```json
+{
+    "firstName": "Sohel",
+    "lastName": "Shaikh",
+    "email": "suhel.shaikh.in@gmail.com",
+    "age": "28",
+    "salary": "40000",
+    "department": "QA Tester"
+}
 ```
 
 ---
 
 # 📌 Preconditions
 
-- Node.js is installed.
-- Playwright is installed.
-- Browser dependencies are installed.
-- User has internet connectivity.
-- SauceDemo website is accessible.
-- Valid login credentials are available.
-
----
-
-# 🧪 Test Data
-
-| Username | Password |
-|----------|----------|
-| standard_user | secret_sauce |
+- Node.js installed
+- Playwright installed
+- Internet connection available
 
 ---
 
 # 📝 Test Steps
 
-| Step | Action | Expected Result |
-|------|--------|----------------|
-| 1 | Launch SauceDemo application | Login page should open |
-| 2 | Enter valid username | Username should be entered successfully |
-| 3 | Enter valid password | Password should be entered successfully |
-| 4 | Click Login button | User should be authenticated |
-| 5 | Verify Inventory page | Products page should be displayed |
+1. Launch browser.
+2. Navigate to the Web Tables page.
+3. Click **Add**.
+4. Enter employee details.
+5. Submit the form.
+6. Search the employee.
+7. Verify employee details.
+8. Edit employee salary.
+9. Verify updated salary.
+10. Delete employee.
+11. Verify employee is removed.
 
 ---
 
 # ✅ Expected Result
 
-- Login should be successful.
-- Inventory page should be displayed.
-- URL should contain **inventory.html**.
-- Products title should be visible.
+- Employee should be added successfully.
+- Employee should be searchable.
+- Employee details should update successfully.
+- Employee should be deleted successfully.
 
 ---
 
 # 📌 Postconditions
 
-- User is logged in successfully.
-- Inventory page is displayed.
-- Application is ready for the next user actions such as Add to Cart or Checkout.
+- CRUD operations completed successfully.
+- Browser closed.
 
 ---
 
-# ⚙ Automation Approach
+# 🔄 BasePage Methods Used
 
-This scenario is automated using:
-
-- Page Object Model (POM)
-- External JSON Test Data
-- Reusable Methods
-- Playwright Built-in Assertions
-- Async/Await Programming
+| Method | Purpose |
+|---------|---------|
+| navigate() | Navigate to application |
+| click() | Click element |
+| fill() | Enter text |
+| clear() | Clear existing value |
+| getLocator() | Return locator |
+| verifyText() | Verify displayed text |
 
 ---
 
 # 🎯 Playwright Concepts Used
 
-- Page Object Model
-- Locators
-- Assertions
-- Async / Await
+- Dynamic Locators
+- Web Table Automation
+- CRUD Operations
+- Playwright Assertions
 - JSON Test Data
-- Browser Context
-- Playwright Test Runner
+- Page Object Model (POM)
 
 ---
 
 # ✔ Assertions Used
 
-- Verify URL
-- Verify Products Page Title
+```javascript
+await expect(this.getLocator(this.table))
+    .toContainText(employeeName);
+
+await expect(this.getLocator(this.table))
+    .not.toContainText(employeeName);
+```
 
 ---
 
-# ▶️ Test Execution
+# ▶ Test Execution
 
-Run all tests
+Run complete suite
 
 ```bash
 npx playwright test
 ```
 
-Run only Task-01
+Run only Task-19
 
 ```bash
-npx playwright test tests/login/validLogin.spec.js --headed
-```
-
-Run on Chromium
-
-```bash
-npx playwright test tests/login/validLogin.spec.js --project=chromium
+npx playwright test tests/webTables/verifyWebTable.spec.js --headed
 ```
 
 Generate HTML Report
@@ -196,99 +210,133 @@ npx playwright show-report
 
 ---
 
-# 🌍 Browser Support
+# 📸 Screenshots
 
-- ✅ Chromium
-- ✅ Firefox
-- ✅ WebKit
+## Web Table Page
 
----
-
-# 📊 Test Execution Status
-
-| Execution Date | Browser | Result |
-|---------------|----------|--------|
-| DD-MM-YYYY | Chromium | ✅ Passed |
+![Web Table](docs/task-19/01-web-table-page.png)
 
 ---
 
-# 📷 Execution Evidence
+## Employee Added
 
-## Login Page
+![Employee Added](docs/task-19/02-employee-added.png)
 
-> Screenshot Path
+---
 
-```text
-docs/task-01/login-page.png
+## Employee Search
+
+![Employee Search](docs/task-19/03-search.png)
+
+---
+
+## Employee Updated
+
+![Employee Updated](docs/task-19/04-updated.png)
+
+---
+
+## Employee Deleted
+
+![Employee Deleted](docs/task-19/05-deleted.png)
+
+---
+
+## Playwright HTML Report
+
+![Playwright Report](docs/task-19/06-playwright-report.png)
+
+---
+
+# 🌿 Git Branch
+
 ```
-
----
-
-## Successful Login
-
-> Screenshot Path
-
-```text
-docs/task-01/inventory-page.png
-```
-
----
-
-# 📈 Playwright HTML Report
-
-> Report Screenshot
-
-```text
-docs/task-01/playwright-report.png
-```
-
----
-
-# 🌿 Git Branch Information
-
-| Branch |
-|---------|
-| feature/task-01-valid-login |
-
-Commit Message
-
-```text
-Task-01: Implement valid login scenario using Playwright JavaScript
+feature/task-19-web-table-crud
 ```
 
 ---
 
 # ⚠ Challenges Faced
 
-- Understanding Playwright project structure.
-- Implementing the Page Object Model.
-- Managing external JSON test data.
-- Learning Playwright assertions.
+- Handling dynamic table rows.
+- Searching records before verification.
+- Updating existing records.
+- Deleting records and validating removal.
+
+---
+
+# ✅ Solution Implemented
+
+- Automated complete CRUD operations.
+- Used reusable BasePage methods.
+- Followed Page Object Model.
+- Used Playwright assertions for validation.
 
 ---
 
 # 📚 Learning Outcome
 
-- Learned Playwright project setup.
-- Implemented Page Object Model.
-- Used reusable page methods.
-- Performed UI validations using assertions.
-- Executed Playwright tests from terminal.
-- Generated Playwright HTML reports.
-- Managed code using Git feature branches.
+- Learned Web Table automation.
+- Performed CRUD operations.
+- Improved dynamic locator handling.
+- Enhanced reusable framework design.
+
+---
+
+# 📈 Framework Enhancement
+
+## New Reusable Methods
+
+```javascript
+async clear(locator)
+{
+    await this.page.locator(locator).clear();
+}
+
+async press(locator, key)
+{
+    await this.page.locator(locator).press(key);
+}
+
+async getText(locator)
+{
+    return await this.page.locator(locator).textContent();
+}
+
+async count(locator)
+{
+    return await this.page.locator(locator).count();
+}
+
+async isVisible(locator)
+{
+    return await this.page.locator(locator).isVisible();
+}
+```
+
+### Benefits
+
+Reusable for:
+
+- Web Tables
+- Search Results
+- Dynamic Lists
+- Pagination
+- Forms
+- Data Validation
 
 ---
 
 # 🚀 Future Enhancements
 
-- Data Driven Testing
-- Environment Configuration
-- Cross Browser Execution
-- Parallel Test Execution
+- Dynamic row identification
+- Pagination handling
+- Sorting verification
+- Filtering validation
+- Cross-browser execution
+- Jenkins CI/CD
+- GitHub Actions
 - Allure Reporting
-- CI/CD using GitHub Actions
-- Docker Integration
-- API Testing using Playwright
 
 ---
 
@@ -298,14 +346,8 @@ Task-01: Implement valid login scenario using Playwright JavaScript
 
 QA Automation Engineer
 
-GitHub Profile:
-https://github.com/Sohel9147
-
-Repository:
-https://github.com/Sohel9147/playwright-javascript-automation-framework
-
 ---
 
 # 📄 License
 
-This project is created for learning, practice, and portfolio purposes.
+This project is created for learning and portfolio purposes.
